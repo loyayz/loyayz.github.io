@@ -1,0 +1,137 @@
+# 绑定的域名
+baseURL: "https://loyayz.github.io/"
+# 首页标题
+title: loyayz
+# 使用的主题
+theme: PaperMod
+# 首页每页显示的文章数
+paginate: 5
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+enableEmoji: true
+pygmentsUseClasses: true
+hasCJKLanguage: true
+
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+minify:
+    disableXML: true
+    # minifyOutput: true
+
+taxonomies:
+    category: categories
+    tag: tags
+    topic: topics
+menu:
+    main:
+        - name: 文章
+          url: posts/
+          weight: 1
+        - name: 分类
+          url: categories/
+          weight: 2
+        - name: 标签
+          url: tags/
+          weight: 3
+
+outputs:
+    home:
+        - HTML
+        - RSS
+        - JSON
+
+params:
+    env: production
+    title: "loyayz's blog"
+    description: "loyayz's blog - https://loyayz.com"
+    author: loyayz
+    images: ["papermod-cover.png"]
+    keywords: [loyayz,ideaworlds,simpleframework]
+    DateFormat: "2006-01-02"
+    ShowReadingTime: false
+    ShowShareButtons: false
+    ShowCodeCopyButtons: true
+    ShowFullTextinRSS: false
+    defaultTheme: auto
+    disableThemeToggle: false
+    disableSpecial1stPost: true
+    disableScrollToTop: false
+    disableAnchoredHeadings: false
+    hideMeta: false
+    hideSummary: false
+    showtoc: true
+    tocopen: false
+    ShowPostNavLinks: true
+    ShowBreadCrumbs: true
+    ShowWordCount: false
+    ShowRssButtonInSectionTermList: false
+    comments: false
+    hideFooter: true
+    
+    #homeInfoParams:
+    #    Title: ""
+    #    Content: 
+    socialIcons:
+        - name: github
+          url: "https://github.com/loyayz"
+        - name: email
+          url: "mailto:loyayz@foxmail.com"
+        - name: RsS
+          url: "index.xml"
+
+    # label:
+    #     text: "Home"
+    #     icon: icon.png
+    #     iconHeight: 35
+
+    # analytics:
+    #     google:
+    #         SiteVerificationTag: "XYZabc"
+
+    #assets:
+    #     favicon: "<link / abs url>"
+    #     favicon16x16: "<link / abs url>"
+    #     favicon32x32: "<link / abs url>"
+    #     apple_touch_icon: "<link / abs url>"
+    #     safari_pinned_tab: "<link / abs url>"
+
+    # cover:
+    #     hidden: true # hide everywhere but not in structured data
+    #     hiddenInList: true # hide on list pages and home
+    #     hiddenInSingle: true # hide on single page
+
+    # fuseOpts:
+    #     isCaseSensitive: false
+    #     shouldSort: true
+    #     location: 0
+    #     distance: 1000
+    #     threshold: 0.4
+    #     minMatchCharLength: 0
+    #     keys: ["title", "permalink", "summary", "content"]
+
+markup:
+    goldmark:
+        renderer:
+            unsafe: true
+    highlight:
+        codeFences: true
+        guessSyntax: true
+        lineNos: true
+        style: monokai
+
+privacy:
+    disqus:
+        disable: true
+    googleAnalytics:
+        disable: true
+    instagram:
+        disable: true
+    twitter:
+        disable: true
+    vimeo:
+        disable: true
+    youtube:
+        disable: true
