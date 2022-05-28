@@ -2,3 +2,4 @@
 ```
 git submodule update --init --recursive --depth=1
 ```
+部署：双击`deploy.bat`或执行命令`sh deploy.sh`
