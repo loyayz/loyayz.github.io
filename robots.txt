@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://loyayz.github.io/sitemap.xml
