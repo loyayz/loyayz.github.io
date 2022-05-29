@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Categories on loyayz</title>
-    <link>https://www.loyayz.com/categories/</link>
+    <link>https://loyayz.com/categories/</link>
     <description>Recent content in Categories on loyayz</description>
     <image>
-      <url>https://www.loyayz.com/papermod-cover.png</url>
-      <link>https://www.loyayz.com/papermod-cover.png</link>
+      <url>https://loyayz.com/papermod-cover.png</url>
+      <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 28 May 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://www.loyayz.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 29 May 2022 01:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>hugo</title>
-      <link>https://www.loyayz.com/categories/hugo/</link>
-      <pubDate>Sat, 28 May 2022 00:00:00 +0800</pubDate>
+      <link>https://loyayz.com/categories/hugo/</link>
+      <pubDate>Sun, 29 May 2022 01:00:00 +0800</pubDate>
       
-      <guid>https://www.loyayz.com/categories/hugo/</guid>
+      <guid>https://loyayz.com/categories/hugo/</guid>
       <description></description>
     </item>
     

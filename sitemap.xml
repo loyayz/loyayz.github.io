@@ -2,30 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.loyayz.com/tags/blog/</loc>
+    <loc>https://loyayz.com/tags/blog/</loc>
+    <lastmod>2022-05-29T01:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://loyayz.com/categories/</loc>
+    <lastmod>2022-05-29T01:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://loyayz.com/tags/hugo/</loc>
+    <lastmod>2022-05-29T01:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://loyayz.com/categories/hugo/</loc>
+    <lastmod>2022-05-29T01:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://loyayz.com/posts/hugo/google-analytics/</loc>
+    <lastmod>2022-05-29T01:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://loyayz.com/</loc>
+    <lastmod>2022-05-29T01:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://loyayz.com/posts/</loc>
+    <lastmod>2022-05-29T01:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://loyayz.com/tags/</loc>
+    <lastmod>2022-05-29T01:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://loyayz.com/posts/hugo/custom-domain/</loc>
+    <lastmod>2022-05-29T00:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://loyayz.com/posts/hugo/init/</loc>
     <lastmod>2022-05-28T00:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://www.loyayz.com/categories/</loc>
-    <lastmod>2022-05-28T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://www.loyayz.com/tags/hugo/</loc>
-    <lastmod>2022-05-28T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://www.loyayz.com/categories/hugo/</loc>
-    <lastmod>2022-05-28T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://www.loyayz.com/</loc>
-    <lastmod>2022-05-28T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://www.loyayz.com/posts/</loc>
-    <lastmod>2022-05-28T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://www.loyayz.com/tags/</loc>
-    <lastmod>2022-05-28T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://www.loyayz.com/posts/blog/%E6%88%91%E7%9A%84%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2022-05-28T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://www.loyayz.com/topics/</loc>
+    <loc>https://loyayz.com/topics/</loc>
   </url>
 </urlset>

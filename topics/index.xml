@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Topics on loyayz</title>
-    <link>https://www.loyayz.com/topics/</link>
+    <link>https://loyayz.com/topics/</link>
     <description>Recent content in Topics on loyayz</description>
     <image>
-      <url>https://www.loyayz.com/papermod-cover.png</url>
-      <link>https://www.loyayz.com/papermod-cover.png</link>
+      <url>https://loyayz.com/papermod-cover.png</url>
+      <link>https://loyayz.com/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="https://www.loyayz.com/topics/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://loyayz.com/topics/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
