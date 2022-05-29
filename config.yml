@@ -1,5 +1,5 @@
 # 绑定的域名
-baseURL: "https://www.loyayz.com/"
+baseURL: "https://loyayz.com/"
 # 首页标题
 title: loyayz
 # 使用的主题
@@ -16,6 +16,8 @@ hasCJKLanguage: true
 buildDrafts: false
 buildFuture: false
 buildExpired: false
+
+googleAnalytics: G-E7Y0X8JSJJ
 
 minify:
     disableXML: true

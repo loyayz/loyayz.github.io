@@ -1,5 +1,5 @@
 ---
-title: "我的网站搭建记录"
+title: "Hugo Github Pages 网站搭建记录"
 date: 2022-05-28T00:00:00+08:00
 draft: false
 tags: ["hugo", "blog"]
@@ -8,44 +8,35 @@ categories: ["hugo"]
 
 基于 [Hugo](https://gohugo.io) 搭建并部署在 [Github Pages](https://pages.github.com)
 
-## 1 安装
-### 1.1 安装 Git
-[官网](https://git-scm.com/)下载 exe 安装包，双击后一直点下一步。
+## 1 安装 Hugo
 
-### 1.2 安装 Hugo
 [官网教程](https://gohugo.io/getting-started/installing/)
-- 在`C:\programs`目录下创建文件夹`hugo`
-- 在[官网](https://github.com/gohugoio/hugo/releases)下载最新版，本次下载 [hugo_extended_0.99.1_Windows-64bit.zip](https://github.com/gohugoio/hugo/releases/download/v0.99.1/hugo_extended_0.99.1_Windows-64bit.zip)
-- 解压 zip 文件，并将解压出的`hugo.exe`移到`C:\programs\hugo`目录下
-- 添加环境变量：
+> 1. 在`C:\programs`目录下创建文件夹`hugo`
+> 2. 在[官网](https://github.com/gohugoio/hugo/releases)下载最新版，本次下载 [hugo_extended_0.99.1_Windows-64bit.zip](https://github.com/gohugoio/hugo/releases/download/v0.99.1/hugo_extended_0.99.1_Windows-64bit.zip)
+> 3. 解压 zip 文件，并将解压出的`hugo.exe`移到`C:\programs\hugo`目录下
+> 4. 添加环境变量：
 *`win+R` -> `sysdm.cpl` -> 高级 -> 环境变量(N)... -> 系统变量(S) -> 双击 Path -> 新建 -> 输入`C:\programs\hugo`*
-- 打开命令行，输入`hugo version`，显示版本号即安装成功
+> 5. 打开命令行，输入`hugo version`，显示版本号即安装成功
 
 ## 2 创建网站
 ### 2.1 生成网站
-- 新建目录`C:\code\loyayz`用于存放网站源码，打开命令行进入该目录
+> 1. 新建目录`C:\code\loyayz`用于存放网站源码
+> 2. 新建网站，这里我使用 yml 配置格式
+> 3. 进入网站目录，以下称`C:\code\loyayz\loyayz.github.io`为根目录
+> 4. 初始化 git 仓库，未安装 git 请先安装：[Git 官网](https://git-scm.com/)
 ```shell
 cd C:\code\loyayz
-```
-- 新建网站，这里我使用 yml 配置格式
-```shell
 hugo new site loyayz.github.io -f yml
-```
-- 进入网站目录，以下称`C:\code\loyayz\loyayz.github.io`为根目录
-```shell
 cd loyayz.github.io
-```
-- 初始化 git 仓库
-```shell
 git init
 ```
 
 ### 2.2 使用主题
-- 下载：在[官网](https://themes.gohugo.io/)挑选主题，本次使用 [PaperMod](https://github.com/adityatelange/hugo-PaperMod)
+> 1. 下载：在[官网](https://themes.gohugo.io/)挑选主题，本次使用 [PaperMod](https://github.com/adityatelange/hugo-PaperMod)
 ```shell
 git submodule add --depth=1 https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
 ```
-- 配置：修改根目录下的`config.yml`文件，我是直接用[示例配置](https://github.com/adityatelange/hugo-PaperMod/blob/exampleSite/config.yml)覆盖后再修改
+> 2. 配置：修改根目录下的`config.yml`文件，我是直接用[示例配置](https://github.com/adityatelange/hugo-PaperMod/blob/exampleSite/config.yml)覆盖后再修改
 ```yml
 # 绑定的域名
 baseURL: "https://loyayz.github.io/"
@@ -129,37 +120,7 @@ params:
         - name: email
           url: "mailto:loyayz@foxmail.com"
         - name: RsS
-          url: "index.xml"
-
-    # label:
-    #     text: "Home"
-    #     icon: icon.png
-    #     iconHeight: 35
-
-    # analytics:
-    #     google:
-    #         SiteVerificationTag: "XYZabc"
-
-    #assets:
-    #     favicon: "<link / abs url>"
-    #     favicon16x16: "<link / abs url>"
-    #     favicon32x32: "<link / abs url>"
-    #     apple_touch_icon: "<link / abs url>"
-    #     safari_pinned_tab: "<link / abs url>"
-
-    # cover:
-    #     hidden: true # hide everywhere but not in structured data
-    #     hiddenInList: true # hide on list pages and home
-    #     hiddenInSingle: true # hide on single page
-
-    # fuseOpts:
-    #     isCaseSensitive: false
-    #     shouldSort: true
-    #     location: 0
-    #     distance: 1000
-    #     threshold: 0.4
-    #     minMatchCharLength: 0
-    #     keys: ["title", "permalink", "summary", "content"]
+          url: "index.xml"        
 
 markup:
     goldmark:
@@ -185,7 +146,7 @@ privacy:
     youtube:
         disable: true
 ```
-- 拓展：如下新建拓展文件`custom.css`、`extend_head.html`、`extend_footer.html`
+> 3. 拓展：如下新建拓展文件`custom.css`、`extend_head.html`、`extend_footer.html`
 ```
 .(loyayz.github.io)
 ├── config.yml
@@ -198,8 +159,8 @@ privacy:
         ├── extend_footer.html
         └── extend_head.html
 ```
-编辑`custom.css`添加如下内容，另两个为空留着后续拓展。
 ```css
+/* custom.css */
 /* 修改代码块的最大高度 */
 .highlight table {
   max-height: 400px
@@ -207,11 +168,11 @@ privacy:
 ```
 
 ### 2.3 本地调试
-- 启动：命令行内执行命令后，在浏览器打开`http://localhost:1313`可预览网站
+
+命令行内执行命令后，在浏览器打开`http://localhost:1313`可预览网站
 ```shell
 hugo server -D
 ```
-- 停止：`Ctrl+C`
 
 ## 3 部署到 Github Pages
 ### 3.1 新建脚本
@@ -266,8 +227,18 @@ jobs:
 ```
 
 ### 3.2 创建远程仓库
-- 创建远程仓库：打开 [GitHub](https://github.com/new) 创建仓库，仓库名为`loyayz.github.io`其他都不选
-- 关联本地和远程仓库，提交并推送到 Github
+> 1. 创建远程仓库：打开 [GitHub](https://github.com/new) 创建仓库，仓库名为`loyayz.github.io`其他都不选
+> 2. 在根目录新建文件`.gitignore`避免以后误操作提交文件
+```
+public/
+.idea/*
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+```
+> 3. 关联本地和远程仓库，提交并推送到 Github
 ```
 git add .
 git commit -m "init"
@@ -275,11 +246,7 @@ git branch -M master
 git remote add origin https://github.com/loyayz/loyayz.github.io.git
 git push --set-upstream origin master
 ```
-- 在根目录新建文件`.gitignore`避免以后误操作提交文件
-```
-public/
-```
-- 在根目录新建文件`README.md`写些仓库说明
+> 4. 在根目录新建`README.md`写些说明后，双击`deploy.bat`推送到远程触发自动化部署
 ```
 本仓库使用 git submodule 引用主题仓库，因此 git clone 本仓库后需要再执行下句命令
 
@@ -287,43 +254,24 @@ git submodule update --init --recursive --depth=1
 
 部署：双击`deploy.bat`或执行命令`sh deploy.sh`
 ```
-- 双击`deploy.bat`推送本地仓库到远程并触发自动化部署
 
 ### 3.3 修改 Github Pages
 
 `GitHub Action`默认生成网站到`gh-pages`分支，因此需要修改`Github Pages`来源
-- 浏览器打开远程仓库，进入设置页面：`Settings -> Pages`
-- 将Source 分支中的`master`换成`gh-pages`
-- 浏览器打开链接`https://loyayz.github.io`即可看到网站
+> 1. 浏览器打开远程仓库，进入设置页面：`Settings -> Pages`
+> 2. 将Source 分支中的`master`换成`gh-pages`
+> 3. 浏览器打开链接`https://loyayz.github.io`即可看到网站
 
-## 4 绑定域名
-- 域名解析配置：*登录阿里云 -> 控制台 -> 域名 -> 域名列表 -> 解析 -> 添加记录*
-```
-记录类型：CNAME
-主机记录：www
-记录值：loyayz.github.io
-```
-- 在根目录新建文件`static/CNAME`
-```
-www.loyayz.com
-```
-- 修改根目录下的`config.yml`
-```
-baseURL: "https://www.loyayz.com/"
-```
-- 双击`deploy.bat`部署
-- 等几分钟域名解析完成后，浏览器打开链接`https://www.loyayz.com`即可看到网站
-
-## 5 创建文章
-- 执行命令行启动服务，浏览器打开`http://localhost:1313`预览网站
+## 4 创建文章
+> 1. 执行命令行启动服务，浏览器打开`http://localhost:1313`预览网站
 ```
 hugo server -D
 ```
-- 打开另一个命令行执行命令创建文章，网站将实时显示新的文章
+> 2. 打开另一个命令行执行命令创建文章，网站将实时显示新的文章
 ```
-hugo new posts/blog/我的网站搭建记录.md
+hugo new posts/hugo/我的网站搭建记录.md
 ```
-- 编辑文章：新建的文章源文件在根目录下的`content/posts/blog/我的网站搭建记录.md`
+> 3. 编辑文章：新建的文章源文件在根目录下的`content/posts/hugo/我的网站搭建记录.md`
 ```
 ---
 title: "我的网站搭建记录"
@@ -337,8 +285,4 @@ categories: ["hugo"]
 ```
 
 注意：`draft`需改为`false`表示该文章不是草稿，否则推送到远程仓库后不会部署该文章
-- 双击`deploy.bat`部署
-- 稍等几秒后刷新`https://loyayz.github.io`或`https://www.loyayz.com`即可看到网站新内容
-
-
-
+> 4. 双击`deploy.bat`部署，稍等几秒后刷新`https://loyayz.github.io`即可看到网站新内容
