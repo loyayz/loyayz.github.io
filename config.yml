@@ -1,17 +1,15 @@
-# 绑定的域名
 baseURL: "https://loyayz.com/"
-# 首页标题
 title: loyayz
-# 使用的主题
 theme: PaperMod
-# 首页每页显示的文章数
-paginate: 5
+paginate: 10
 
 enableInlineShortcodes: true
 enableRobotsTXT: true
 enableEmoji: true
 pygmentsUseClasses: true
 hasCJKLanguage: true
+defaultContentLanguage: zh
+timeZone: "Asia/Shanghai"
 
 buildDrafts: false
 buildFuture: false
@@ -23,17 +21,21 @@ minify:
     disableXML: true
     # minifyOutput: true
 
-taxonomies:
-    category: categories
-    tag: tags
-    topic: topics
+languages:
+    zh:
+        languageName: "中文"
+        weight: 1
+        taxonomies:
+            category: categories
+            tag: tags
+
 menu:
     main:
-        - name: 文章
+        - name: 编程点滴
           url: posts/
           weight: 1
-        - name: 分类
-          url: categories/
+        - name: 建站笔记
+          url: categories/website
           weight: 2
         - name: 标签
           url: tags/
@@ -41,6 +43,7 @@ menu:
         - name: 搜索
           url: search/
           weight: 10
+
 outputs:
     home:
         - HTML
