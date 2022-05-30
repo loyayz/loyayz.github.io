@@ -38,7 +38,9 @@ menu:
         - name: 标签
           url: tags/
           weight: 3
-
+        - name: 搜索
+          url: search/
+          weight: 10
 outputs:
     home:
         - HTML
@@ -105,14 +107,15 @@ params:
     #     hiddenInList: true # hide on list pages and home
     #     hiddenInSingle: true # hide on single page
 
-    # fuseOpts:
-    #     isCaseSensitive: false
-    #     shouldSort: true
-    #     location: 0
-    #     distance: 1000
-    #     threshold: 0.4
-    #     minMatchCharLength: 0
-    #     keys: ["title", "permalink", "summary", "content"]
+    fuseOpts:
+        isCaseSensitive: false
+        includeMatches: true
+        shouldSort: true
+        location: 0
+        distance: 1000
+        threshold: 0.4
+        minMatchCharLength: 0
+        keys: ["title", "permalink", "summary", "content"]
 
 markup:
     goldmark:
@@ -128,7 +131,7 @@ privacy:
     disqus:
         disable: true
     googleAnalytics:
-        disable: true
+        disable: false
     instagram:
         disable: true
     twitter:

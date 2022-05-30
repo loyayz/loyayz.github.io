@@ -1,5 +1,5 @@
 ---
-title: "Hugo Github Pages 网站搭建记录"
+title: "Hugo Github Pages 网站搭建"
 date: 2022-05-28T00:00:00+08:00
 draft: false
 tags: ["hugo", "blog"]
@@ -11,23 +11,21 @@ categories: ["hugo"]
 ## 1 安装 Hugo
 
 [官网教程](https://gohugo.io/getting-started/installing/)
-> 1. 在`C:\programs`目录下创建文件夹`hugo`
+> 1. 新建目录`C:\programs\hugo`
 > 2. 在[官网](https://github.com/gohugoio/hugo/releases)下载最新版，本次下载 [hugo_extended_0.99.1_Windows-64bit.zip](https://github.com/gohugoio/hugo/releases/download/v0.99.1/hugo_extended_0.99.1_Windows-64bit.zip)
-> 3. 解压 zip 文件，并将解压出的`hugo.exe`移到`C:\programs\hugo`目录下
+> 3. 解压 zip 文件，并将解压出的`hugo.exe`移到`C:\programs\hugo`
 > 4. 添加环境变量：
 *`win+R` -> `sysdm.cpl` -> 高级 -> 环境变量(N)... -> 系统变量(S) -> 双击 Path -> 新建 -> 输入`C:\programs\hugo`*
 > 5. 打开命令行，输入`hugo version`，显示版本号即安装成功
 
 ## 2 创建网站
 ### 2.1 生成网站
-> 1. 新建目录`C:\code\loyayz`用于存放网站源码
-> 2. 新建网站，这里我使用 yml 配置格式
-> 3. 进入网站目录，以下称`C:\code\loyayz\loyayz.github.io`为根目录
-> 4. 初始化 git 仓库，未安装 git 请先安装：[Git 官网](https://git-scm.com/)
+> 1. 新建目录`C:\code\loyayz\loyayz.github.io`用于存放网站源码
+> 2. 执行命令生成网站
+> 3. 初始化 git 仓库，未安装 git 请先安装：[Git 官网](https://git-scm.com/)
 ```shell
-cd C:\code\loyayz
-hugo new site loyayz.github.io -f yml
-cd loyayz.github.io
+cd C:\code\loyayz\loyayz.github.io
+hugo new site . -f yml
 git init
 ```
 
