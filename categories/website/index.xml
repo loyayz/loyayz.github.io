@@ -9,7 +9,16 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 31 May 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/categories/website/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/categories/website/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo 自定义展示文章元数据</title>
+      <link>https://loyayz.com/posts/website/220601-hugo-papermod-custom-post-meta/</link>
+      <pubDate>Wed, 01 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/posts/website/220601-hugo-papermod-custom-post-meta/</guid>
+      <description>文章元数据：文章的页面配置及一些内置的变量 1 2 3 4 5 6 7 8 9 10 页面配置：定义在 Hugo 文章源码头部的信息，比如下面这些就是本篇的页面配置 --- title: &amp;#34;Hugo 自定</description>
+    </item>
+    
     <item>
       <title>Hugo Markdown 代码块显示文件名</title>
       <link>https://loyayz.com/posts/website/220531-hugo-markdown-code-blocks-filename/</link>
