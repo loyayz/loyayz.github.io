@@ -22,3 +22,14 @@
 .filename-highlight-title span {
   color: #d5d5d6;
 }
+
+.custom-post-meta-item {
+  display: inline-block;
+}
+
+.custom-post-meta-item svg {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: -0.15em;
+}

@@ -21,3 +21,28 @@ privacy:
     googleAnalytics:
         disable: false
 {{</ filename-highlight >}}
+
+> 6. 使用模板：PaperMod 默认已添加模板，其他主题可以在`<head>`中添加下面代码
+```
+{{ if not .Site.IsServer }}
+{{ template "_internal/google_analytics.html" . }}
+{{ end }}
+```
+
+注：PaperMod 是通过判断是否生产环境来启用模板的，这样会导致本地调试的时候也会启用，可以通过以下步骤修改
+
+> 6.1 修改网站配置
+
+{{< filename-highlight lang="yml" filename="./config.yml" >}}
+params:
+    env: dev
+{{</ filename-highlight >}}
+
+> 6.2 修改部署脚本：`run: hugo --minify`后加上`-e production`
+
+{{< filename-highlight lang="yml" filename="./.github/workflows/gh-pages.yml" >}}
+
+      - name: Build
+        run: hugo --minify -e production
+
+{{</ filename-highlight >}}
