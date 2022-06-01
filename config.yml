@@ -32,10 +32,10 @@ languages:
 menu:
     main:
         - name: 编程点滴
-          url: posts/
+          url: coding/
           weight: 1
         - name: 建站笔记
-          url: categories/website
+          url: website/
           weight: 2
         - name: 标签
           url: tags/

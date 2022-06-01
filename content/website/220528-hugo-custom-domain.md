@@ -20,15 +20,11 @@ categories: ["website"]
 
 ## 2 网站配置
 > 1. 添加解析文件
-
-{{< filename-highlight filename="./static/CNAME" >}}
-loyayz.com
-{{</ filename-highlight >}}
-
+> ```yml { title="./static/CNAME" }
+> loyayz.com
+> ```
 > 2. 修改网站配置
-
-{{< filename-highlight lang="yml" filename="./config.yml" >}}
-baseURL: "https://loyayz.com/"
-{{</ filename-highlight >}}
-
+> ```yml { title="./config.yml" }
+> baseURL: "https://loyayz.com/"
+> ```
 > 3. 部署后等域名解析完成，浏览器打开链接`https://loyayz.com`即可看到网站

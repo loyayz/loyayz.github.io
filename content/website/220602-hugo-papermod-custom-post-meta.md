@@ -1,11 +1,13 @@
 ---
 title: "Hugo 自定义展示文章元数据"
-date: 2022-06-01
+date: 2022-06-02
 draft: false
 isCJKLanguage: true
 tags: ["hugo"]
 categories: ["website"]
 ---
+
+## 1 说明
 
 **文章元数据**：文章的页面配置及一些[内置的变量](https://gohugo.io/variables/page/)
 ```
@@ -21,25 +23,23 @@ categories: ["website"]
 ---
 ```
 
-本站使用 PaperMod 主题，文章元数据在两个地方，默认展示方式有点单调，因此想在原基础上给每个文本前添加图标
+**需求**：本站使用 PaperMod 主题，文章元数据在两个地方，默认展示方式有点单调，因此想在原基础上给每个文本前添加图标
 > 1. 文章详情页：正文上面头部标题和描述的下一行
 > 2. 文章列表页：每个文章项的底部
 
 下面是具体实现步骤，其他主题也可参考，只要修改对应的展示模板就行
 
-> 1. 修改网站配置
-
-{{< filename-highlight lang="yml" filename="./config.yml" >}}
+## 2 修改网站配置
+```yml { title="./config.yml" }
 params:
     hideMeta: false
     ShowReadingTime: true
     ShowWordCount: true
-{{</ filename-highlight >}}
+```
 
-> 2. 新建元数据模板文件
+## 3 新建元数据模板文件
 
-{{< filename-highlight filename="./layouts/partials/post_meta.html" >}}
-
+```markdown { title="./layouts/partials/post_meta.html" }
 {{ $scratch := newScratch }}
 
 {{ if not .Date.IsZero }}
@@ -78,8 +78,7 @@ params:
 {{ with ($scratch.Get "meta") }}
 {{ delimit . "&nbsp;·&nbsp;" }}
 {{ end }}
-
-{{</ filename-highlight >}}
+```
 
 <details>
 <summary>点此查看本步骤的说明</summary>
@@ -95,10 +94,9 @@ params:
 > This allows a theme’s end user to copy a partial’s contents into a file of the same name for further customization.
 </details>
 
-> 3. 新建图标模板文件
+## 4 新建图标模板文件
 
-{{< filename-highlight filename="./layouts/partials/extend_svg.html" >}}
-
+```html { title="./layouts/partials/extend_svg.html" }
 {{ $icon_name := . }}
 {{ if (eq $icon_name "") }}
 {{ else if (eq $icon_name "calendar") }}
@@ -114,14 +112,13 @@ params:
 {{ else }}
 {{ partial "svg.html" (dict "name" $icon_name) }}
 {{ end }}
-
-{{</ filename-highlight >}}
+```
 
 为省略篇幅这里`<svg> ... </svg>`没写内容，[可点此查看完整内容](https://github.com/loyayz/loyayz.github.io/blob/master/layouts/partials/extend_svg.html)
 
-> 4. 添加样式
+## 5 添加样式
 
-{{< filename-highlight lang="css" filename="./assets/css/extended/custom.css" >}}
+```css { title="./assets/css/extended/custom.css" }
 .custom-post-meta-item {
   display: inline-block;
 }
@@ -132,4 +129,4 @@ params:
   display: inline-block;
   vertical-align: -0.15em;
 }
-{{</ filename-highlight >}}
+```

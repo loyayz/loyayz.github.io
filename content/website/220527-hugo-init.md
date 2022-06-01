@@ -5,6 +5,7 @@ draft: false
 isCJKLanguage: true
 tags: ["hugo"]
 categories: ["website"]
+weight: 1
 ---
 
 基于 [Hugo](https://gohugo.io) 搭建并部署在 [Github Pages](https://pages.github.com)
@@ -18,6 +19,8 @@ categories: ["website"]
 > 4. 添加环境变量：
 *`win+R` -> `sysdm.cpl` -> 高级 -> 环境变量(N)... -> 系统变量(S) -> 双击 Path -> 新建 -> 输入`C:\programs\hugo`*
 > 5. 打开命令行，输入`hugo version`，显示版本号即安装成功
+
+升级 Hugo：下载新版覆盖`C:\programs\hugo\hugo.exe`
 
 ## 2 创建网站
 ### 2.1 生成网站
@@ -37,7 +40,7 @@ git submodule add --depth=1 https://github.com/adityatelange/hugo-PaperMod.git t
 ```
 > 2. 修改网站配置：我是直接用[示例配置](https://github.com/adityatelange/hugo-PaperMod/blob/exampleSite/config.yml)覆盖后再修改
 
-{{< filename-highlight lang="yml" filename="./config.yml" >}}
+```yml { title="./config.yml" }
 baseURL: "https://loyayz.github.io/"
 title: loyayz
 theme: PaperMod
@@ -147,7 +150,7 @@ privacy:
         disable: true
     youtube:
         disable: true
-{{</ filename-highlight >}}
+```
 
 > 3. 拓展：如下新建拓展文件`custom.css`、`extend_head.html`、`extend_footer.html`
 ```
@@ -163,12 +166,12 @@ privacy:
         └── extend_head.html
 ```
 
-{{< filename-highlight lang="css" filename="./assets/css/extended/custom.css" >}}
+```css { title="./assets/css/extended/custom.css" }
 /* 修改代码块的最大高度 */
 .highlight table {
   max-height: 400px
 }
-{{</ filename-highlight >}}
+```
 
 ### 2.3 本地调试
 
@@ -181,25 +184,25 @@ hugo server -D
 ### 3.1 新建脚本
   - Windows 一键提交脚本
 
-{{< filename-highlight lang="shell" filename="./deploy.bat" >}}
+```shell { title="./deploy.bat" }
 @echo off
 git add .
 git commit -m "update"
 git push
-{{</ filename-highlight >}}
+```
 
   - Linux 一键提交脚本
 
-{{< filename-highlight lang="shell" filename="./deploy.sh" >}}
+```shell { title="./deploy.sh" }
 #!/bin/sh
 git add .
 git commit -m "update"
 git push
-{{</ filename-highlight >}}
+```
 
   - GitHub Action 自动化部署脚本
 
-{{< filename-highlight lang="shell" filename="./.github/workflows/gh-pages.yml" >}}
+```shell { title="./.github/workflows/gh-pages.yml" }
 name: github pages
 
 on:
@@ -232,13 +235,13 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-{{</ filename-highlight >}}
+```
 
 ### 3.2 创建远程仓库
 > 1. 创建远程仓库：打开 [GitHub](https://github.com/new) 创建仓库，仓库名为`loyayz.github.io`其他都不选
 > 2. 新建`.gitignore`文件避免误操作提交文件
 
-{{< filename-highlight filename="./.gitignore" >}}
+```text { title="./.gitignore" }
 public/
 .idea/*
 .vscode/*
@@ -246,7 +249,7 @@ public/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-{{</ filename-highlight >}}
+```
 
 > 3. 关联本地和远程仓库，提交并推送到 Github
 ```
@@ -258,13 +261,13 @@ git push --set-upstream origin master
 ```
 > 4. 新建仓库说明文档
 
-{{< filename-highlight lang="markdown" filename="./README.md" >}}
+```markdown { title="./README.md" }
 本仓库使用 git submodule 引用主题仓库，因此 git clone 本仓库后需要再执行下句命令
 
 git submodule update --init --recursive --depth=1
 
 部署：双击`deploy.bat`或执行命令`sh deploy.sh`
-{{</ filename-highlight >}}
+```
 
 > 5. 双击`deploy.bat`推送到 Github 触发自动化部署
 ### 3.3 修改 Github Pages
@@ -285,7 +288,7 @@ hugo new posts/website/hugo-init.md
 ```
 > 3. 编辑文章
 
-{{< filename-highlight filename="./content/posts/website/hugo-init.md" >}}
+```markdown { title="./content/posts/website/hugo-init.md" }
 ---
 title: "Hugo Github Pages 网站搭建"
 date: 2022-05-27
@@ -296,7 +299,7 @@ categories: ["website"]
 ---
 
 基于 [Hugo](https://gohugo.io) 搭建并部署在 [Github Pages](https://pages.github.com)
-{{</ filename-highlight >}}
+```
 
 注意：`draft`需改为`false`表示该文章不是草稿，否则推送到远程仓库后不会部署该文章
 > 4. 双击`deploy.bat`部署，稍等几秒后刷新`https://loyayz.github.io`即可看到网站新内容
