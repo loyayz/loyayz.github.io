@@ -9,14 +9,23 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 31 May 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Hugo Markdown 代码块显示文件名</title>
-      <link>https://loyayz.com/posts/website/220531-hugo-markdown-code-blocks-filename/</link>
+      <title>Hugo 在新标签页打开外部链接</title>
+      <link>https://loyayz.com/website/220601-hugo-markdown-open-external-links-in-a-new-tab/</link>
+      <pubDate>Wed, 01 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220601-hugo-markdown-open-external-links-in-a-new-tab/</guid>
+      <description>通过 Markdown Render Hooks | Hugo 实现此功能 文件： ./layouts/_default/_markup/render-link.html 1 &amp;lt;a href=&amp;#34;{{ .Destination | safeURL }}&amp;#34;{{ with .Title}} title=&amp;#34;{{ . }}&amp;#34;{{ end }}{{ if strings.HasPrefix .Destination &amp;#34;http&amp;#34; }} target=&amp;#34;_blank&amp;#34; rel=&amp;#34;noopener nofollow noreferrer&amp;#34; {{ end }}&amp;gt;{{ .Text | safeHTML }}&amp;lt;/a&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>Hugo 代码块显示标题</title>
+      <link>https://loyayz.com/website/220531-hugo-markdown-codeblock-show-title/</link>
       <pubDate>Tue, 31 May 2022 00:00:00 +0800</pubDate>
       
-      <guid>https://loyayz.com/posts/website/220531-hugo-markdown-code-blocks-filename/</guid>
-      <description>通过 Hugo Shortcode Templates 包装 内置的 highlight 实现此功能 新建模板 文件：./layouts/shortcodes/filename-highlight.html 1 2 3</description>
+      <guid>https://loyayz.com/website/220531-hugo-markdown-codeblock-show-title/</guid>
+      <description>通过 Markdown Render Hooks | Hugo 实现此功能 1 新建模板 文件： ./layouts/_default/_markup/render-codeblock.html 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 {{- $lang := .Type | default &amp;#34;text&amp;#34; }} {{- $title := (split (.Attributes.title | default &amp;#34;&amp;#34;) &amp;#34;;&amp;#34;) }} {{- $titleText := (trim (index $title 0 | default &amp;#34;&amp;#34;) &amp;#34; &amp;#34;) }} {{- $titleShowName</description>
     </item>
     
   </channel>

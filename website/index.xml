@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>hugo on loyayz</title>
-    <link>https://loyayz.com/tags/hugo/</link>
-    <description>Recent content in hugo on loyayz</description>
+    <title>建站笔记 on loyayz</title>
+    <link>https://loyayz.com/website/</link>
+    <description>Recent content in 建站笔记 on loyayz</description>
     <image>
       <url>https://loyayz.com/papermod-cover.png</url>
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 02 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 02 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/website/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo Github Pages 网站搭建</title>
       <link>https://loyayz.com/website/220527-hugo-init/</link>
