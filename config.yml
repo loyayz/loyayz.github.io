@@ -1,6 +1,6 @@
 baseURL: "https://loyayz.com/"
 title: loyayz
-theme: PaperMod
+theme: PaperModx
 paginate: 10
 
 enableInlineShortcodes: true
@@ -37,9 +37,6 @@ menu:
         - name: 建站笔记
           url: website/
           weight: 2
-        - name: 标签
-          url: tags/
-          weight: 3
         - name: 搜索
           url: search/
           weight: 10
@@ -51,6 +48,9 @@ outputs:
         - JSON
 
 params:
+    mainSections:
+        - coding
+        - website
     env: dev
     title: "loyayz's blog"
     description: "loyayz's blog - https://loyayz.com"
@@ -75,11 +75,9 @@ params:
     ShowWordCount: true
     ShowRssButtonInSectionTermList: false
     comments: false
-    hideFooter: true
-    
-    #homeInfoParams:
-    #    Title: ""
-    #    Content: 
+    hideFooter: false
+    profileMode:
+        enabled: true
     socialIcons:
         - name: github
           url: "https://github.com/loyayz"
@@ -118,6 +116,9 @@ params:
         threshold: 0.4
         minMatchCharLength: 0
         keys: ["title", "permalink", "summary", "content"]
+    randomImgOpt:
+        enable: true
+        defaultTopics: "wallpapers,star,nature,interiors"
 
 markup:
     goldmark:

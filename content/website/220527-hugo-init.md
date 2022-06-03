@@ -34,16 +34,24 @@ git init
 ```
 
 ### 2.2 使用主题
-> 1. 下载：在[官网](https://themes.gohugo.io/)挑选主题，本次使用 [PaperMod](https://github.com/adityatelange/hugo-PaperMod)
+> 1. 下载：在[官网](https://themes.gohugo.io/)挑选主题
+
+**22/06/03 updated：如果你喜欢本站的风格，可以使用我的主题 PaperModx**
+```shell
+git submodule add --depth=1 https://github.com/loyayz/hugo-PaperModx.git themes/PaperModx
+```
+
+~~本次使用 [PaperMod](https://github.com/adityatelange/hugo-PaperMod)~~
 ```shell
 git submodule add --depth=1 https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
 ```
+
 > 2. 修改网站配置：我是直接用[示例配置](https://github.com/adityatelange/hugo-PaperMod/blob/exampleSite/config.yml)覆盖后再修改
 
 ```yml { title="./config.yml" }
 baseURL: "https://loyayz.github.io/"
 title: loyayz
-theme: PaperMod
+theme: PaperModx
 paginate: 10
 
 enableInlineShortcodes: true
@@ -152,7 +160,7 @@ privacy:
         disable: true
 ```
 
-> 3. 拓展：如下新建拓展文件`custom.css`、`extend_head.html`、`extend_footer.html`
+> 3. 拓展：如下新建文件方便拓展`custom.css`、`extend_head.html`、`extend_footer.html`
 ```
 .(loyayz.github.io)
 ├── config.yml
@@ -164,13 +172,6 @@ privacy:
     └── partials
         ├── extend_footer.html
         └── extend_head.html
-```
-
-```css { title="./assets/css/extended/custom.css" }
-/* 修改代码块的最大高度 */
-.highlight table {
-  max-height: 400px
-}
 ```
 
 ### 2.3 本地调试
@@ -264,7 +265,11 @@ git push --set-upstream origin master
 ```markdown { title="./README.md" }
 本仓库使用 git submodule 引用主题仓库，因此 git clone 本仓库后需要再执行下句命令
 
-git submodule update --init --recursive --depth=1
+git submodule update --init --recursive
+
+后续若要更新主题，执行下句命令
+
+git submodule update --remote --merge
 
 部署：双击`deploy.bat`或执行命令`sh deploy.sh`
 ```
@@ -288,7 +293,7 @@ hugo new posts/website/hugo-init.md
 ```
 > 3. 编辑文章
 
-```markdown { title="./content/posts/website/hugo-init.md" }
+```yml { title="./content/posts/website/hugo-init.md" }
 ---
 title: "Hugo Github Pages 网站搭建"
 date: 2022-05-27

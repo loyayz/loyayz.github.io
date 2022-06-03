@@ -3,7 +3,7 @@ title: "Hugo 添加谷歌分析"
 date: 2022-05-30
 draft: false
 isCJKLanguage: true
-tags: ["hugo"]
+tags: ["hugo", "paper-modx"]
 categories: ["website"]
 ---
 
@@ -25,15 +25,15 @@ privacy:
 
 ## 3 使用模板
 
-PaperMod 默认已添加模板，其他主题可以在`<head>`中添加下面代码
+在`<head>  </head>`中添加下面代码
 ```
 {{ if not .Site.IsServer }}
 {{ template "_internal/google_analytics.html" . }}
 {{ end }}
 ```
+**22/06/03 updated：PaperModx 是使用这种方式，可以不改下面两个配置**
 
-注：PaperMod 是通过判断是否生产环境来启用模板的，这样会导致本地调试的时候也会启用，可以通过以下步骤修改
-
+注：PaperMod 默认已添加模板，但是是通过判断是否生产环境来启用模板的，这样会导致本地调试的时候也会启用，可以通过以下步骤修改
 > 1. 修改网站配置
 > ```yml { title="./config.yml" }
 > params:

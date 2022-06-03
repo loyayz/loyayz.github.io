@@ -1,26 +1,26 @@
 ---
-title: "Hugo 自定义展示文章元数据"
+title: "PaperMod 文章元数据前添加图标"
 date: 2022-06-02
 draft: false
 isCJKLanguage: true
-tags: ["hugo"]
+tags: ["hugo", "paper-modx"]
 categories: ["website"]
 ---
 
 ## 1 说明
 
 **文章元数据**：文章的页面配置及一些[内置的变量](https://gohugo.io/variables/page/)
-```
-页面配置：定义在 Hugo 文章源码头部的信息，比如下面这些就是本篇的页面配置
-
+```yml
 ---
-title: "Hugo 自定义展示文章元数据"
-date: 2022-05-31
+title: "PaperMod 文章元数据前添加图标"
+date: 2022-06-02
 draft: false
 isCJKLanguage: true
-tags: ["hugo"]
+tags: ["hugo", "paper-modx"]
 categories: ["website"]
 ---
+
+页面配置：定义在 Hugo 文章源码头部的信息，比如上面这些就是本篇的页面配置
 ```
 
 **需求**：本站使用 PaperMod 主题，文章元数据在两个地方，默认展示方式有点单调，因此想在原基础上给每个文本前添加图标
@@ -44,23 +44,17 @@ params:
 
 {{ if not .Date.IsZero }}
 {{ $scratch.Add "meta_keys" (slice "date") }}
-{{ $scratch.SetInMap "meta_items" "date" (slice "calendar"
-(.Date | time.Format (default "January 2, 2006" site.Params.DateFormat))
-)}}
+{{ $scratch.SetInMap "meta_items" "date" (slice "calendar" (.Date | time.Format (default "January 2, 2006" site.Params.DateFormat))) }}
 {{ end }}
 
 {{ if (.Param "ShowWordCount") }}
 {{ $scratch.Add "meta_keys" (slice "words") }}
-{{ $scratch.SetInMap "meta_items" "words" (slice "file-text"
-(i18n "words" .WordCount | default (printf "%d words" .WordCount))
-)}}
+{{ $scratch.SetInMap "meta_items" "words" (slice "file-text" (i18n "words" .WordCount | default (printf "%d words" .WordCount))) }}
 {{ end }}
 
 {{ if (.Param "ShowReadingTime") }}
 {{ $scratch.Add "meta_keys" (slice "read_time") }}
-{{ $scratch.SetInMap "meta_items" "read_time" (slice "clock"
-(i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime))
-)}}
+{{ $scratch.SetInMap "meta_items" "read_time" (slice "clock" (i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime))) }}
 {{ end }}
 
 {{ with (partial "author.html" .) }}
@@ -71,8 +65,8 @@ params:
 {{ $metaItems := $scratch.Get "meta_items" }}
 {{ range ($scratch.Get "meta_keys") }}
 {{ $icon := (partial "extend_svg.html" (index $metaItems . 0)) }}
-{{ $text := (index $metaItems . 1) }}
-{{ $scratch.Add "meta" (slice (printf "<span class=\"custom-post-meta-item\">%s %s</span>" $icon $text )) }}
+{{ $text := (printf "<span>%s</span>" (index $metaItems . 1)) }}
+{{ $scratch.Add "meta" (slice (printf "<span class=\"x-post-meta-item\">%s%s</span>" $icon $text )) }}
 {{ end }}
 
 {{ with ($scratch.Get "meta") }}
@@ -114,19 +108,20 @@ params:
 {{ end }}
 ```
 
-为省略篇幅这里`<svg> ... </svg>`没写内容，[可点此查看完整内容](https://github.com/loyayz/loyayz.github.io/blob/master/layouts/partials/extend_svg.html)
+为省略篇幅这里`<svg> ... </svg>`没写内容，[可点此查看 PaperModx 完整内容](https://github.com/loyayz/hugo-PaperModx/blob/master/layouts/partials/svg.html)
 
 ## 5 添加样式
 
 ```css { title="./assets/css/extended/custom.css" }
-.custom-post-meta-item {
+.x-post-meta-item {
   display: inline-block;
 }
 
-.custom-post-meta-item svg {
+.x-post-meta-item svg {
   width: 1em;
   height: 1em;
   display: inline-block;
   vertical-align: -0.15em;
+  margin-right: 4px;
 }
 ```

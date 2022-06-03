@@ -1,9 +1,9 @@
 ---
-title: "Hugo 在新标签页打开外部链接"
+title: "Hugo 用新标签页打开外部链接"
 date: 2022-06-01
 draft: false
 isCJKLanguage: true
-tags: ["hugo", "markdown"]
+tags: ["hugo", "paper-modx"]
 categories: ["website"]
 ---
 

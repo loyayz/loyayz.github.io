@@ -1,36 +1,7 @@
-/* 修改代码块的最大高度 */
-.highlight table {
-  max-height: 400px
+#profile_cover {
+    border-radius: 0
 }
 
-.custom-highlight-wrapper :nth-child(2) {
-  margin-top: 0 !important;
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-}
-
-/* --hljs-bg 和 --radius 是 PaperMod 主题提供的变量 */
-.custom-highlight-title {
-  background: var(--hljs-bg) !important;
-  border-top-left-radius: var(--radius);
-  border-top-right-radius: var(--radius);
-  color: #e7ce56;
-  padding: 4px 0 0 16px;
-  font-size: .78em;
-}
-
-.custom-post-meta-item {
-  display: inline-block;
-}
-
-.custom-post-meta-item svg {
-  width: 1em;
-  height: 1em;
-  display: inline-block;
-  vertical-align: -0.15em;
-}
-
-.custom-entry-top {
-  font-size: 14px;
-  color: #cd201f;
+#profile_explore {
+    text-align: right;
 }
