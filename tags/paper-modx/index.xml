@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>建站笔记 on loyayz</title>
-    <link>https://loyayz.com/website/</link>
-    <description>Recent content in 建站笔记 on loyayz</description>
+    <title>paper-modx on loyayz</title>
+    <link>https://loyayz.com/tags/paper-modx/</link>
+    <description>Recent content in paper-modx on loyayz</description>
     <image>
       <url>https://loyayz.com/papermod-cover.png</url>
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 04 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/website/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Hugo Github Pages 网站搭建</title>
-      <link>https://loyayz.com/website/220527-hugo-init/</link>
-      <pubDate>Fri, 27 May 2022 00:00:00 +0800</pubDate>
-      
-      <guid>https://loyayz.com/website/220527-hugo-init/</guid>
-      <description>基于 Hugo 搭建并部署在 Github Pages 1 安装 Hugo 官网教程 新建目录C:\programs\hugo 在官网 下载最新版，本次下载 hugo_extended_0.99.1_Windows-64bit.zip 解压 zip 文件，并将解压出的hugo.</description>
-    </item>
-    
+    <lastBuildDate>Sat, 04 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/paper-modx/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>PaperMod 自定义页面底部信息</title>
       <link>https://loyayz.com/website/220604-hugo-papermodx-separate-footer/</link>
@@ -71,24 +62,6 @@
       
       <guid>https://loyayz.com/website/220530-hugo-add-google-analytics/</guid>
       <description>Hugo 内部模板 已集成 Google Analytics，本篇记录下如何使用 1 注册 Google Analytics 登录 Google Analytics 点击首页的开始衡量按钮 按页面提示创建账号，创建成功后会自动跳转至管</description>
-    </item>
-    
-    <item>
-      <title>Hugo PaperMod 添加搜索功能</title>
-      <link>https://loyayz.com/website/220529-hugo-add-search/</link>
-      <pubDate>Sun, 29 May 2022 00:00:00 +0800</pubDate>
-      
-      <guid>https://loyayz.com/website/220529-hugo-add-search/</guid>
-      <description>PaperMod 已集成 Fuse.js 实现搜索功能，本篇记录下如何使用 1 新建页面 1 hugo new search.md 文件： ./content/search.md 1 2 3 4 --- title: &amp;#34;搜索&amp;#34; layout: &amp;#34;search&amp;#34; --- 2 修改网站配置 文件： ./config.yml 1 2 3 4</description>
-    </item>
-    
-    <item>
-      <title>Hugo Github Pages 绑定域名</title>
-      <link>https://loyayz.com/website/220528-hugo-custom-domain/</link>
-      <pubDate>Sat, 28 May 2022 00:00:00 +0800</pubDate>
-      
-      <guid>https://loyayz.com/website/220528-hugo-custom-domain/</guid>
-      <description>1 域名配置 登录阿里云 ，进入控制台找到域名服务 点击域名列表 点击要绑定的域名后的解析 点击添加记录 1 2 3 记录类型：CNAME 主机记录：@ 记录值：l</description>
     </item>
     
   </channel>

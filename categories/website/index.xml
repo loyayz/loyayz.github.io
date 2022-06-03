@@ -9,7 +9,7 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 02 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/categories/website/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/categories/website/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo Github Pages 网站搭建</title>
       <link>https://loyayz.com/website/220527-hugo-init/</link>
@@ -20,25 +20,43 @@
     </item>
     
     <item>
-      <title>Hugo 自定义展示文章元数据</title>
-      <link>https://loyayz.com/website/220602-hugo-papermod-custom-post-meta/</link>
-      <pubDate>Thu, 02 Jun 2022 00:00:00 +0800</pubDate>
+      <title>PaperMod 自定义页面底部信息</title>
+      <link>https://loyayz.com/website/220604-hugo-papermodx-separate-footer/</link>
+      <pubDate>Sat, 04 Jun 2022 00:00:00 +0800</pubDate>
       
-      <guid>https://loyayz.com/website/220602-hugo-papermod-custom-post-meta/</guid>
-      <description>1 说明 文章元数据：文章的页面配置及一些内置的变量 1 2 3 4 5 6 7 8 9 10 页面配置：定义在 Hugo 文章源码头部的信息，比如下面这些就是本篇的页面配置 --- title:</description>
+      <guid>https://loyayz.com/website/220604-hugo-papermodx-separate-footer/</guid>
+      <description>需求：自定义页面底部信息，添加版权说明和关于我两个页面链接 将./themes/PaperMod/layouts/partials/foote</description>
     </item>
     
     <item>
       <title>建站笔记</title>
       <link>https://loyayz.com/website/</link>
-      <pubDate>Thu, 02 Jun 2022 00:00:00 +0800</pubDate>
+      <pubDate>Sat, 04 Jun 2022 00:00:00 +0800</pubDate>
       
       <guid>https://loyayz.com/website/</guid>
-      <description></description>
+      <description>记录本站搭建的过程，如果你也喜欢这些个性化修改，可以使用我的主题 [PaperModx](https://github.com/loyayz/hugo-PaperModx)</description>
     </item>
     
     <item>
-      <title>Hugo 在新标签页打开外部链接</title>
+      <title>PaperMod 列表文章标题后添加标识</title>
+      <link>https://loyayz.com/website/220603-hugo-papermodx-article-of-list/</link>
+      <pubDate>Fri, 03 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220603-hugo-papermodx-article-of-list/</guid>
+      <description>需求：自动为列表中的文章添加对应的标识：[置顶]、[转载] 将./themes/PaperMod/layouts/_default/list.</description>
+    </item>
+    
+    <item>
+      <title>PaperMod 文章元数据前添加图标</title>
+      <link>https://loyayz.com/website/220602-hugo-papermodx-post-meta/</link>
+      <pubDate>Thu, 02 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220602-hugo-papermodx-post-meta/</guid>
+      <description>1 说明 文章元数据：文章的页面配置及一些内置的变量 1 2 3 4 5 6 7 8 9 10 --- title: &amp;#34;PaperMod 文章元数据前添加图标&amp;#34; date: 2022-06-02 draft: false isCJKLanguage: true tags: [&amp;#34;hugo&amp;#34;, &amp;#34;paper-modx&amp;#34;] categories: [&amp;#34;website&amp;#34;] --- 页面配置：定</description>
+    </item>
+    
+    <item>
+      <title>Hugo 用新标签页打开外部链接</title>
       <link>https://loyayz.com/website/220601-hugo-markdown-open-external-links-in-a-new-tab/</link>
       <pubDate>Wed, 01 Jun 2022 00:00:00 +0800</pubDate>
       
