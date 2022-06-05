@@ -9,7 +9,7 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 04 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/categories/website/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/categories/website/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo Github Pages 网站搭建</title>
       <link>https://loyayz.com/website/220527-hugo-init/</link>
@@ -20,21 +20,30 @@
     </item>
     
     <item>
+      <title>Hugo 添加归档页面</title>
+      <link>https://loyayz.com/website/220605-hugo-add-archives/</link>
+      <pubDate>Sun, 05 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220605-hugo-add-archives/</guid>
+      <description>需求：添加归档页面显示所有文章 暂无自定义要求，直接使用 PaperMod 默认页面，这里记下使用步骤和注意事项 新建页面 1 hugo new archives.md 文件： ./content/archives.md 1 2 3 4 --- title: &amp;#34;归</description>
+    </item>
+    
+    <item>
+      <title>建站笔记</title>
+      <link>https://loyayz.com/website/</link>
+      <pubDate>Sun, 05 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/</guid>
+      <description>记录本站搭建的过程，如果你也喜欢这些个性化修改，可以使用我的主题 [PaperModx](https://github.com/loyayz/hugo-PaperModx)</description>
+    </item>
+    
+    <item>
       <title>PaperMod 自定义页面底部信息</title>
       <link>https://loyayz.com/website/220604-hugo-papermodx-separate-footer/</link>
       <pubDate>Sat, 04 Jun 2022 00:00:00 +0800</pubDate>
       
       <guid>https://loyayz.com/website/220604-hugo-papermodx-separate-footer/</guid>
       <description>需求：自定义页面底部信息，添加版权说明和关于我两个页面链接 将./themes/PaperMod/layouts/partials/foote</description>
-    </item>
-    
-    <item>
-      <title>建站笔记</title>
-      <link>https://loyayz.com/website/</link>
-      <pubDate>Sat, 04 Jun 2022 00:00:00 +0800</pubDate>
-      
-      <guid>https://loyayz.com/website/</guid>
-      <description>记录本站搭建的过程，如果你也喜欢这些个性化修改，可以使用我的主题 [PaperModx](https://github.com/loyayz/hugo-PaperModx)</description>
     </item>
     
     <item>

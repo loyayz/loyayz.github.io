@@ -9,7 +9,7 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 04 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo Github Pages 网站搭建</title>
       <link>https://loyayz.com/website/220527-hugo-init/</link>
@@ -17,6 +17,15 @@
       
       <guid>https://loyayz.com/website/220527-hugo-init/</guid>
       <description>基于 Hugo 搭建并部署在 Github Pages 1 安装 Hugo 官网教程 新建目录C:\programs\hugo 在官网 下载最新版，本次下载 hugo_extended_0.99.1_Windows-64bit.zip 解压 zip 文件，并将解压出的hugo.</description>
+    </item>
+    
+    <item>
+      <title>Hugo 添加归档页面</title>
+      <link>https://loyayz.com/website/220605-hugo-add-archives/</link>
+      <pubDate>Sun, 05 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220605-hugo-add-archives/</guid>
+      <description>需求：添加归档页面显示所有文章 暂无自定义要求，直接使用 PaperMod 默认页面，这里记下使用步骤和注意事项 新建页面 1 hugo new archives.md 文件： ./content/archives.md 1 2 3 4 --- title: &amp;#34;归</description>
     </item>
     
     <item>
