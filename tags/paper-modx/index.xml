@@ -9,13 +9,22 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 05 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/paper-modx/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/paper-modx/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Hugo 添加归档页面</title>
-      <link>https://loyayz.com/website/220605-hugo-add-archives/</link>
+      <title>PaperModx 模板：随机显示图片</title>
+      <link>https://loyayz.com/website/220606-hugo-papermodx-template-for-random-image/</link>
+      <pubDate>Mon, 06 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220606-hugo-papermodx-template-for-random-image/</guid>
+      <description>需求：新增模板用来随机显示图片，支持partials和shortcodes 👇 随机的图片，刷新页面看看效果 👇 1 实现原理 基于unsplash提供</description>
+    </item>
+    
+    <item>
+      <title>PaperMod 添加归档页面</title>
+      <link>https://loyayz.com/website/220605-hugo-papermodx-add-archives/</link>
       <pubDate>Sun, 05 Jun 2022 00:00:00 +0800</pubDate>
       
-      <guid>https://loyayz.com/website/220605-hugo-add-archives/</guid>
+      <guid>https://loyayz.com/website/220605-hugo-papermodx-add-archives/</guid>
       <description>需求：添加归档页面显示所有文章 暂无自定义要求，直接使用 PaperMod 默认页面，这里记下使用步骤和注意事项 新建页面 1 hugo new archives.md 文件： ./content/archives.md 1 2 3 4 --- title: &amp;#34;归</description>
     </item>
     
@@ -48,29 +57,38 @@
     
     <item>
       <title>Hugo 用新标签页打开外部链接</title>
-      <link>https://loyayz.com/website/220601-hugo-markdown-open-external-links-in-a-new-tab/</link>
+      <link>https://loyayz.com/website/220601-hugo-papermodx-open-external-links-in-a-new-tab/</link>
       <pubDate>Wed, 01 Jun 2022 00:00:00 +0800</pubDate>
       
-      <guid>https://loyayz.com/website/220601-hugo-markdown-open-external-links-in-a-new-tab/</guid>
+      <guid>https://loyayz.com/website/220601-hugo-papermodx-open-external-links-in-a-new-tab/</guid>
       <description>通过 Markdown Render Hooks | Hugo 实现此功能 文件： ./layouts/_default/_markup/render-link.html 1 &amp;lt;a href=&amp;#34;{{ .Destination | safeURL }}&amp;#34;{{ with .Title}} title=&amp;#34;{{ . }}&amp;#34;{{ end }}{{ if strings.HasPrefix .Destination &amp;#34;http&amp;#34; }} target=&amp;#34;_blank&amp;#34; rel=&amp;#34;noopener nofollow noreferrer&amp;#34; {{ end }}&amp;gt;{{ .Text | safeHTML }}&amp;lt;/a&amp;gt;</description>
     </item>
     
     <item>
       <title>Hugo 代码块显示标题</title>
-      <link>https://loyayz.com/website/220531-hugo-markdown-codeblock-show-title/</link>
+      <link>https://loyayz.com/website/220531-hugo-papermodx-codeblock-show-title/</link>
       <pubDate>Tue, 31 May 2022 00:00:00 +0800</pubDate>
       
-      <guid>https://loyayz.com/website/220531-hugo-markdown-codeblock-show-title/</guid>
+      <guid>https://loyayz.com/website/220531-hugo-papermodx-codeblock-show-title/</guid>
       <description>通过 Markdown Render Hooks | Hugo 实现此功能 1 新建模板 文件： ./layouts/_default/_markup/render-codeblock.html 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 {{- $lang := .Type | default &amp;#34;text&amp;#34; }} {{- $title := (split (.Attributes.title | default &amp;#34;&amp;#34;) &amp;#34;;&amp;#34;) }} {{- $titleText := (trim (index $title 0 | default &amp;#34;&amp;#34;) &amp;#34; &amp;#34;) }} {{- $titleShowName</description>
     </item>
     
     <item>
       <title>Hugo 添加谷歌分析</title>
-      <link>https://loyayz.com/website/220530-hugo-add-google-analytics/</link>
+      <link>https://loyayz.com/website/220530-hugo-papermodx-add-google-analytics/</link>
       <pubDate>Mon, 30 May 2022 00:00:00 +0800</pubDate>
       
-      <guid>https://loyayz.com/website/220530-hugo-add-google-analytics/</guid>
+      <guid>https://loyayz.com/website/220530-hugo-papermodx-add-google-analytics/</guid>
       <description>Hugo 内部模板 已集成 Google Analytics，本篇记录下如何使用 1 注册 Google Analytics 登录 Google Analytics 点击首页的开始衡量按钮 按页面提示创建账号，创建成功后会自动跳转至管</description>
+    </item>
+    
+    <item>
+      <title>Hugo PaperMod 添加搜索功能</title>
+      <link>https://loyayz.com/website/220529-hugo-papermodx-add-search/</link>
+      <pubDate>Sun, 29 May 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220529-hugo-papermodx-add-search/</guid>
+      <description>PaperMod 已集成 Fuse.js 实现搜索功能，本篇记录下如何使用 1 新建页面 1 hugo new search.md 文件： ./content/search.md 1 2 3 4 --- title: &amp;#34;搜索&amp;#34; layout: &amp;#34;search&amp;#34; --- 2 修改网站配置 文件： ./config.yml 1 2 3 4</description>
     </item>
     
   </channel>
