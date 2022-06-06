@@ -1,16 +1,15 @@
 <div class="profile">
     <div class="profile_inner">
-        {{- partial "templates/random_img.html" (dict "id" "profile_cover") }}
-        <p>👋 Hi, I’m loyayz</p>
-        <p>🚀 Welcome to my planet 🌎</p>
+        {{- partial "templates/random_image.html" }}
+        <p>👋 Hi, I'm loyayz</p>
+        <p>🚀 Welcome to my planet 🌏</p>
         <hr>
-        <p><em>I‘m a full-stack web developer</em></p>
+        <p><em>I'm a full-stack web developer</em></p>
         <p><em>I'm building an imaginative product to share interesting ideas</em>
-            🧐 <a href="/about/" title="idea worlds" rel="noopener">IdeaWorlds</a>
+            » <a href="/about/" title="idea worlds" rel="noopener"><strong><em>IdeaWorlds</em></strong></a>
         </p>
         <hr>
-        <div id="profile_explore">🚀 <a href="/archives/">explore my blog</a> »</div>
-        <p style="font-size: 0.85em">random cover image by unsplash.com</p>
+        <div id="profile_explore">🧐 <a href="/archives/">explore my blog</a> »</div>
         {{- partial "social_icons.html" site.Params.socialIcons -}}
     </div>
 </div>

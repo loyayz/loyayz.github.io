@@ -116,9 +116,9 @@ params:
         threshold: 0.4
         minMatchCharLength: 0
         keys: ["title", "permalink", "summary", "content"]
-    randomImgOpt:
+    randomImage:
         enable: true
-        defaultTopics: "wallpapers,star,nature,interiors"
+        topic: "wallpapers,star,nature,interiors"
 
 markup:
     goldmark:

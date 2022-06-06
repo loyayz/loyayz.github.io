@@ -1,5 +1,5 @@
 ---
-title: "Hugo 添加归档页面"
+title: "PaperMod 添加归档页面"
 date: 2022-06-05
 draft: false
 isCJKLanguage: true
