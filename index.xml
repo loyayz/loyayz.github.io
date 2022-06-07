@@ -9,7 +9,7 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 06 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo Github Pages 网站搭建</title>
       <link>https://loyayz.com/website/220527-hugo-init/</link>
@@ -17,6 +17,15 @@
       
       <guid>https://loyayz.com/website/220527-hugo-init/</guid>
       <description>基于 Hugo 搭建并部署在 Github Pages 1 安装 Hugo 官网教程 新建目录C:\programs\hugo 在官网 下载最新版，本次下载 hugo_extended_0.99.1_Windows-64bit.zip 解压 zip 文件，并将解压出的hugo.</description>
+    </item>
+    
+    <item>
+      <title>PaperMod 区分列表和文章页的导航文字</title>
+      <link>https://loyayz.com/website/220607-hugo-papermodx-distinguish-nav/</link>
+      <pubDate>Tue, 07 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220607-hugo-papermodx-distinguish-nav/</guid>
+      <description>需求：PaperMod 列表和文章页的导航文字都是上一页/下一页，这在中文表述中不太准确，因此将文章页的文字改为上一篇/下一篇 编辑 i18n 1 2 3 4 5</description>
     </item>
     
     <item>
@@ -34,7 +43,7 @@
       <pubDate>Sun, 05 Jun 2022 00:00:00 +0800</pubDate>
       
       <guid>https://loyayz.com/website/220605-hugo-papermodx-add-archives/</guid>
-      <description>需求：添加归档页面显示所有文章 暂无自定义要求，直接使用 PaperMod 默认页面，这里记下使用步骤和注意事项 新建页面 1 hugo new archives.md 文件： ./content/archives.md 1 2 3 4 --- title: &amp;#34;归</description>
+      <description>需求：添加归档页面显示所有文章 暂无自定义要求，直接使用 PaperMod 默认页面，这里记下使用步骤和注意事项 新建页面 1 hugo new archives.md ./content/archives.md 1 2 3 4 --- title: &amp;#34;归档&amp;#</description>
     </item>
     
     <item>
@@ -70,7 +79,7 @@
       <pubDate>Wed, 01 Jun 2022 00:00:00 +0800</pubDate>
       
       <guid>https://loyayz.com/website/220601-hugo-papermodx-open-external-links-in-a-new-tab/</guid>
-      <description>通过 Markdown Render Hooks | Hugo 实现此功能 文件： ./layouts/_default/_markup/render-link.html 1 &amp;lt;a href=&amp;#34;{{ .Destination | safeURL }}&amp;#34;{{ with .Title}} title=&amp;#34;{{ . }}&amp;#34;{{ end }}{{ if strings.HasPrefix .Destination &amp;#34;http&amp;#34; }} target=&amp;#34;_blank&amp;#34; rel=&amp;#34;noopener nofollow noreferrer&amp;#34; {{ end }}&amp;gt;{{ .Text | safeHTML }}&amp;lt;/a&amp;gt;</description>
+      <description>通过 Markdown Render Hooks | Hugo 实现此功能 ./layouts/_default/_markup/render-link.html 1 &amp;lt;a href=&amp;#34;{{ .Destination | safeURL }}&amp;#34;{{ with .Title}} title=&amp;#34;{{ . }}&amp;#34;{{ end }}{{ if strings.HasPrefix .Destination &amp;#34;http&amp;#34; }} target=&amp;#34;_blank&amp;#34; rel=&amp;#34;noopener nofollow noreferrer&amp;#34; {{ end }}&amp;gt;{{ .Text | safeHTML }}&amp;lt;/a&amp;gt;</description>
     </item>
     
     <item>
@@ -79,7 +88,7 @@
       <pubDate>Tue, 31 May 2022 00:00:00 +0800</pubDate>
       
       <guid>https://loyayz.com/website/220531-hugo-papermodx-codeblock-show-title/</guid>
-      <description>通过 Markdown Render Hooks | Hugo 实现此功能 1 新建模板 文件： ./layouts/_default/_markup/render-codeblock.html 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 {{- $lang := .Type | default &amp;#34;text&amp;#34; }} {{- $title := (split (.Attributes.title | default &amp;#34;&amp;#34;) &amp;#34;;&amp;#34;) }} {{- $titleText := (trim (index $title 0 | default &amp;#34;&amp;#34;) &amp;#34; &amp;#34;) }} {{- $titleShowName</description>
+      <description>通过 Markdown Render Hooks | Hugo 实现此功能 1 新建模板 ./layouts/_default/_markup/render-codeblock.html 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 {{- $lang := .Type | default &amp;#34;text&amp;#34; }} {{- $title := (split (.Attributes.title | default &amp;#34;&amp;#34;) &amp;#34;;&amp;#34;) }} {{- $titleText := (trim (index $title 0 | default &amp;#34;&amp;#34;) &amp;#34; &amp;#34;) }} {{- $titleShowName := (trim (index</description>
     </item>
     
     <item>
@@ -97,7 +106,7 @@
       <pubDate>Sun, 29 May 2022 00:00:00 +0800</pubDate>
       
       <guid>https://loyayz.com/website/220529-hugo-papermodx-add-search/</guid>
-      <description>PaperMod 已集成 Fuse.js 实现搜索功能，本篇记录下如何使用 1 新建页面 1 hugo new search.md 文件： ./content/search.md 1 2 3 4 --- title: &amp;#34;搜索&amp;#34; layout: &amp;#34;search&amp;#34; --- 2 修改网站配置 文件： ./config.yml 1 2 3 4</description>
+      <description>PaperMod 已集成 Fuse.js 实现搜索功能，本篇记录下如何使用 1 新建页面 1 hugo new search.md ./content/search.md 1 2 3 4 --- title: &amp;#34;搜索&amp;#34; layout: &amp;#34;search&amp;#34; --- 2 修改网站配置 ./config.yml 1 2 3 4 5 6 7 8 9 10</description>
     </item>
     
     <item>
@@ -116,7 +125,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://loyayz.com/copyright/</guid>
-      <description>本站（loyayz.com）文章均为原创文章，如有转载皆已注明。 本站采用 CC BY-NC-SA 4.0 协议，转载时请遵守以下条款： 保留署名 loyayz 保留原文链接 不将本作品用</description>
+      <description>本站（loyayz.com）文章均为原创文章，如有转载皆已注明。 本站采用 CC BY-NC-ND 4.0 协议，转载时请遵守以下条款： 保留署名 loyayz 保留原文链接 不将本作品用</description>
     </item>
     
     <item>
