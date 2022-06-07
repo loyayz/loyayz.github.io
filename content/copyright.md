@@ -11,7 +11,7 @@ ShowWordCount: false
 
 本站（loyayz.com）文章均为原创文章，如有转载皆已注明。
 
-本站采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) 协议，转载时请遵守以下条款：
+本站采用 [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) 协议，转载时请遵守以下条款：
 
 - 保留署名 loyayz
 - 保留原文链接

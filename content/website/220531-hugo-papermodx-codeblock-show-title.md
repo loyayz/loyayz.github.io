@@ -16,7 +16,7 @@ categories: ["website"]
 {{- $title := (split (.Attributes.title | default "") ";") }}
 {{- $titleText := (trim (index $title 0 | default "") " ") }}
 {{- $titleShowName := (trim (index $title 1 | default "true") " ") }}
-{{- $titleName := (trim (index $title 2 | default "文件：") " ") }}
+{{- $titleName := (trim (index $title 2 | default "") " ") }}
 <div class="x-highlight-wrapper">
 {{- if gt (len $titleText) 0 }}
     <div class="x-highlight-title">
@@ -73,5 +73,5 @@ categories: ["website"]
 \`\`\`
 
 ```text { title="loyayz;true;我是：" }
-第三个参数是前缀名，默认值 “文件：”
+第三个参数是前缀名，无默认值
 ```
