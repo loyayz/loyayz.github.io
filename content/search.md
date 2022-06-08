@@ -1,4 +1,6 @@
 ---
 title: "搜索"
 layout: "search"
+hideTags: false
+tagsTitle: 标签 
 ---
