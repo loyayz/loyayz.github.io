@@ -9,7 +9,7 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 08 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo Github Pages 网站搭建</title>
       <link>https://loyayz.com/website/220527-hugo-init/</link>
@@ -17,6 +17,15 @@
       
       <guid>https://loyayz.com/website/220527-hugo-init/</guid>
       <description>基于 Hugo 搭建并部署在 Github Pages 1 安装 Hugo 官网教程 新建目录C:\programs\hugo 在官网 下载最新版，本次下载 hugo_extended_0.99.1_Windows-64bit.zip 解压 zip 文件，并将解压出的hugo.</description>
+    </item>
+    
+    <item>
+      <title>PaperMod 查询页展示标签列表</title>
+      <link>https://loyayz.com/website/220609-hugo-papermodx-tags-in-search-page/</link>
+      <pubDate>Thu, 09 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220609-hugo-papermodx-tags-in-search-page/</guid>
+      <description>需求：在查询页展示标签列表 原因：标签页（/tags）需要一个入口，但是 PaperMod 默认的标签页比较简洁，占用一个菜单感觉有点浪费，而搜索页面内提供标签</description>
     </item>
     
     <item>

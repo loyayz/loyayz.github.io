@@ -9,7 +9,16 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 08 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/paper-modx/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/paper-modx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PaperMod 查询页展示标签列表</title>
+      <link>https://loyayz.com/website/220609-hugo-papermodx-tags-in-search-page/</link>
+      <pubDate>Thu, 09 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220609-hugo-papermodx-tags-in-search-page/</guid>
+      <description>需求：在查询页展示标签列表 原因：标签页（/tags）需要一个入口，但是 PaperMod 默认的标签页比较简洁，占用一个菜单感觉有点浪费，而搜索页面内提供标签</description>
+    </item>
+    
     <item>
       <title>PaperMod 文章页底部添加面包屑导航</title>
       <link>https://loyayz.com/website/220608-hugo-papermodx-breadcrumbs-in-footer/</link>
