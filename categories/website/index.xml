@@ -9,7 +9,7 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 07 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/categories/website/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/categories/website/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo Github Pages 网站搭建</title>
       <link>https://loyayz.com/website/220527-hugo-init/</link>
@@ -20,21 +20,30 @@
     </item>
     
     <item>
-      <title>PaperMod 区分列表和文章页的导航文字</title>
-      <link>https://loyayz.com/website/220607-hugo-papermodx-distinguish-nav/</link>
-      <pubDate>Tue, 07 Jun 2022 00:00:00 +0800</pubDate>
+      <title>PaperMod 文章页底部添加面包屑导航</title>
+      <link>https://loyayz.com/website/220608-hugo-papermodx-breadcrumbs-in-footer/</link>
+      <pubDate>Wed, 08 Jun 2022 00:00:00 +0800</pubDate>
       
-      <guid>https://loyayz.com/website/220607-hugo-papermodx-distinguish-nav/</guid>
-      <description>需求：PaperMod 列表和文章页的导航文字都是上一页/下一页，这在中文表述中不太准确，因此将文章页的文字改为上一篇/下一篇 编辑 i18n 1 2 3 4 5</description>
+      <guid>https://loyayz.com/website/220608-hugo-papermodx-breadcrumbs-in-footer/</guid>
+      <description>需求：当文章比较长时无法点到面包屑，因此需要在文章页面的底部添加面包屑导航 编辑文章页面模板 ./layouts/_default/single.html 38 39 40 41 42 43 44 45 &amp;lt;footer class=&amp;#34;post-footer&amp;#34;&amp;gt; &amp;lt;!-- 添加下面这行 --&amp;gt; {{ partial &amp;#34;breadcrumbs.html&amp;#34; . }} {{-</description>
     </item>
     
     <item>
       <title>建站笔记</title>
       <link>https://loyayz.com/website/</link>
-      <pubDate>Tue, 07 Jun 2022 00:00:00 +0800</pubDate>
+      <pubDate>Wed, 08 Jun 2022 00:00:00 +0800</pubDate>
       
       <guid>https://loyayz.com/website/</guid>
       <description>记录本站搭建的过程，如果你也喜欢这些个性化修改，可以使用我的主题 [PaperModx](https://github.com/loyayz/hugo-PaperModx)</description>
+    </item>
+    
+    <item>
+      <title>PaperMod 区分列表和文章的导航文字</title>
+      <link>https://loyayz.com/website/220607-hugo-papermodx-distinguish-nav/</link>
+      <pubDate>Tue, 07 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220607-hugo-papermodx-distinguish-nav/</guid>
+      <description>需求：PaperMod 列表页面和文章页面的导航文字都是上一页/下一页，这在中文表述中不太准确，因此将文章页面的文字改为上一篇/下一篇 编辑 i18n 1</description>
     </item>
     
     <item>
