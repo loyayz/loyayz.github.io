@@ -9,7 +9,7 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 09 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 10 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo Github Pages 网站搭建</title>
       <link>https://loyayz.com/website/220527-hugo-init/</link>
@@ -17,6 +17,15 @@
       
       <guid>https://loyayz.com/website/220527-hugo-init/</guid>
       <description>基于 Hugo 搭建并部署在 Github Pages 1 安装 Hugo 官网教程 新建目录C:\programs\hugo 在官网 下载最新版，本次下载 hugo_extended_0.99.1_Windows-64bit.zip 解压 zip 文件，并将解压出的hugo.</description>
+    </item>
+    
+    <item>
+      <title>PaperMod 统计列表文章篇数和字数</title>
+      <link>https://loyayz.com/website/220610-hugo-papermodx-template-for-calculate-word-count/</link>
+      <pubDate>Fri, 10 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220610-hugo-papermodx-template-for-calculate-word-count/</guid>
+      <description>需求：统计全站或列表中文章篇数和字数 实现步骤： 新建统计模板 ./layouts/partials/stat.html 1 2 3 4 5 6 7 8 9 10 11 12 13 14 {{- $scratch := newScratch -}} {{- $pages := union .RegularPages .Sections -}} {{- if .IsHome -}} {{- $pages = where site.RegularPages &amp;#34;Type&amp;#34; &amp;#34;in&amp;#34; site.Params.mainSections -}} {{-</description>
     </item>
     
     <item>

@@ -9,7 +9,16 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 09 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/paper-modx/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 10 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/paper-modx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PaperMod 统计列表文章篇数和字数</title>
+      <link>https://loyayz.com/website/220610-hugo-papermodx-template-for-calculate-word-count/</link>
+      <pubDate>Fri, 10 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220610-hugo-papermodx-template-for-calculate-word-count/</guid>
+      <description>需求：统计全站或列表中文章篇数和字数 实现步骤： 新建统计模板 ./layouts/partials/stat.html 1 2 3 4 5 6 7 8 9 10 11 12 13 14 {{- $scratch := newScratch -}} {{- $pages := union .RegularPages .Sections -}} {{- if .IsHome -}} {{- $pages = where site.RegularPages &amp;#34;Type&amp;#34; &amp;#34;in&amp;#34; site.Params.mainSections -}} {{-</description>
+    </item>
+    
     <item>
       <title>PaperMod 查询页展示标签列表</title>
       <link>https://loyayz.com/website/220609-hugo-papermodx-tags-in-search-page/</link>
