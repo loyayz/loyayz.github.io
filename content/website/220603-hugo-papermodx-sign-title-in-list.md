@@ -4,7 +4,7 @@ date: 2022-06-03
 draft: false
 isCJKLanguage: true
 tags: ["hugo", "paper-modx"]
-categories: ["website"]
+series: ["PaperModx 定制列表页"]
 ---
 
 **需求**：自动为列表中的文章添加对应的标识：`[置顶]`、`[转载]`

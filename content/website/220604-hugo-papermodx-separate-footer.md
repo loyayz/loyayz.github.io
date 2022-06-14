@@ -4,7 +4,6 @@ date: 2022-06-04
 draft: false
 isCJKLanguage: true
 tags: ["hugo", "paper-modx"]
-categories: ["website"]
 ---
 
 **需求**：自定义页面底部信息，添加`版权说明`和`关于我`两个页面链接

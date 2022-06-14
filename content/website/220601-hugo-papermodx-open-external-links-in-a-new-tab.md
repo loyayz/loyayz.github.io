@@ -4,7 +4,6 @@ date: 2022-06-01
 draft: false
 isCJKLanguage: true
 tags: ["hugo", "paper-modx"]
-categories: ["website"]
 ---
 
 通过 [Markdown Render Hooks | Hugo](https://gohugo.io/templates/render-hooks/) 实现此功能

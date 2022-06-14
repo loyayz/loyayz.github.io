@@ -4,7 +4,6 @@ date: 2022-05-28
 draft: false
 isCJKLanguage: true
 tags: ["hugo"]
-categories: ["website"]
 ---
 
 ## 1 域名配置

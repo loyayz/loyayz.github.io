@@ -1,10 +1,10 @@
 ---
 title: "PaperModx 模板：统计文章篇数和字数"
-date: 2022-06-10
+date: 2022-06-11
 draft: false
 isCJKLanguage: true
 tags: ["hugo", "paper-modx"]
-categories: ["website"]
+series: ["PaperModx 定制列表页"]
 ---
 
 **需求**：新增一个模板，用来统计文章篇数和字数，并展示在列表页和归档页
@@ -14,22 +14,21 @@ categories: ["website"]
 1. 新建统计模板
 ```html { title="./layouts/partials/stat.html" }
 {{- $scratch := newScratch -}}
+{{- $kind := .Kind }}
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections -}}
 
-{{- if eq .Kind "pages" -}}
-{{- $scratch.Add "pages" .pages -}}
-{{- else -}}
-{{-   $pages := union .RegularPages .Sections -}}
-{{-   if .IsHome -}}
-{{-     $pages = where site.RegularPages "Type" "in" site.Params.mainSections -}}
-{{-   end -}}
-{{-   $scratch.Add "pages" $pages -}}
+{{- if eq $kind "pages" -}}
+{{-   $pages = .pages -}}
+{{- else if or (eq $kind `term`) (eq $kind `section`) -}}
+{{-   $pages = union .RegularPages .Sections -}}
 {{- end -}}
 
-{{- $pages := $scratch.Get "pages" -}}
 {{- range $pages -}}
 {{- $scratch.Add "words" .WordCount -}}
 {{- end -}}
-{{- printf "%s 篇 %s 字" ((len $pages) | string) (($scratch.Get "words") | string) -}}
+
+{{- $words := $scratch.Get "words" | default 0 }}
+{{- printf "%s 篇 %s 字" ((len $pages) | string) ($words | string) -}}
 ```
 
 2. 编辑模板

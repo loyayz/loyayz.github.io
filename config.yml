@@ -26,8 +26,8 @@ languages:
         languageName: "中文"
         weight: 1
         taxonomies:
-            category: categories
             tag: tags
+            series: series
 
 menu:
     main:
@@ -76,6 +76,7 @@ params:
     ShowRssButtonInSectionTermList: false
     comments: false
     hideFooter: false
+    ShowSeriesInPost: true
     profileMode:
         enabled: true
     socialIcons:

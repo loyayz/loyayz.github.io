@@ -4,7 +4,7 @@ date: 2022-06-02
 draft: false
 isCJKLanguage: true
 tags: ["hugo", "paper-modx"]
-categories: ["website"]
+series: ["PaperModx 定制文章页", "PaperModx 定制列表页"]
 ---
 
 ## 1 说明

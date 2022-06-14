@@ -4,7 +4,7 @@ date: 2022-06-07
 draft: false
 isCJKLanguage: true
 tags: ["hugo", "paper-modx"]
-categories: ["website"]
+series: ["PaperModx 定制文章页"]
 ---
 
 **需求**：PaperMod 列表页面和文章页面的导航文字都是`上一页/下一页`，这在中文表述中不太准确，因此将文章页面的文字改为`上一篇/下一篇`

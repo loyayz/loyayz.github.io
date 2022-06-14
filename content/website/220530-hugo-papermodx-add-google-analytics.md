@@ -4,7 +4,6 @@ date: 2022-05-30
 draft: false
 isCJKLanguage: true
 tags: ["hugo", "paper-modx"]
-categories: ["website"]
 ---
 
 [Hugo 内部模板](https://gohugo.io/templates/internal) 已集成 Google Analytics，本篇记录下如何使用

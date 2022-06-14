@@ -4,7 +4,7 @@ date: 2022-06-08
 draft: false
 isCJKLanguage: true
 tags: ["hugo", "paper-modx"]
-categories: ["website"]
+series: ["PaperModx 定制文章页"]
 ---
 
 **需求**：当文章比较长时无法点到面包屑，因此需要在文章页面的底部添加面包屑导航

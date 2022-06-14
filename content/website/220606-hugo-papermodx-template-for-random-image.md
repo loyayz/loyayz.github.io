@@ -4,7 +4,6 @@ date: 2022-06-06
 draft: false
 isCJKLanguage: true
 tags: ["hugo", "paper-modx"]
-categories: ["website"]
 ---
 
 **需求**：新增模板用来随机显示图片，支持`partials`和`shortcodes`

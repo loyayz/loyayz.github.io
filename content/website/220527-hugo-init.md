@@ -4,7 +4,6 @@ date: 2022-05-27
 draft: false
 isCJKLanguage: true
 tags: ["hugo"]
-categories: ["website"]
 weight: 1
 ---
 

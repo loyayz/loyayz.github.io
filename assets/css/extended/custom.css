@@ -1,3 +1,8 @@
+:root {
+    --nav-width: 1024px;
+    --main-width: 768px;
+}
+
 #profile_explore {
     text-align: right;
 }

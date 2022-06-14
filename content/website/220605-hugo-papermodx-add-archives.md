@@ -4,7 +4,6 @@ date: 2022-06-05
 draft: false
 isCJKLanguage: true
 tags: ["hugo", "paper-modx"]
-categories: ["website"]
 ---
 
 **需求**：添加归档页面显示所有文章
