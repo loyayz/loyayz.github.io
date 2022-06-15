@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>PaperModx 定制搜索页 on loyayz</title>
+    <link>https://loyayz.com/series/papermodx-%E5%AE%9A%E5%88%B6%E6%90%9C%E7%B4%A2%E9%A1%B5/</link>
+    <description>Recent content in PaperModx 定制搜索页 on loyayz</description>
+    <image>
+      <url>https://loyayz.com/papermod-cover.png</url>
+      <link>https://loyayz.com/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 10 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/series/papermodx-%E5%AE%9A%E5%88%B6%E6%90%9C%E7%B4%A2%E9%A1%B5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PaperMod 搜索页展示系列列表</title>
+      <link>https://loyayz.com/website/220610-hugo-papermodx-series-in-search-page.md/</link>
+      <pubDate>Fri, 10 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220610-hugo-papermodx-series-in-search-page.md/</guid>
+      <description>需求：在搜索页展示系列列表 以下是实现步骤 编辑搜索页面模板 ./layouts/_default/search.html 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 {{- if not (.Param &amp;#34;hideSeries&amp;#34;)}} {{- $taxonomies := .Site.Taxonomies.series }} {{- if gt (len $taxonomies) 0 }} &amp;lt;h2 style=&amp;#34;margin-top: 32px&amp;#34;&amp;gt;{{- (.Param &amp;#34;seriesTitle&amp;#34;) | default</description>
+    </item>
+    
+    <item>
+      <title>PaperMod 搜索页展示标签列表</title>
+      <link>https://loyayz.com/website/220609-hugo-papermodx-tags-in-search-page/</link>
+      <pubDate>Thu, 09 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220609-hugo-papermodx-tags-in-search-page/</guid>
+      <description>需求：在搜索页展示标签列表 原因：标签页（/tags）需要一个入口，但是 PaperMod 默认的标签页比较简洁，占用一个菜单感觉有点浪费，而搜索页面内提供标签</description>
+    </item>
+    
+    <item>
+      <title>Hugo PaperMod 添加搜索功能</title>
+      <link>https://loyayz.com/website/220529-hugo-papermodx-add-search/</link>
+      <pubDate>Sun, 29 May 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220529-hugo-papermodx-add-search/</guid>
+      <description>PaperMod 已集成 Fuse.js 实现搜索功能，本篇记录下如何使用 1 新建页面 1 hugo new search.md ./content/search.md 1 2 3 4 --- title: &amp;#34;搜索&amp;#34; layout: &amp;#34;search&amp;#34; --- 2 修改网站配置 ./config.yml 1 2 3 4 5 6 7 8 9 10</description>
+    </item>
+    
+  </channel>
+</rss>

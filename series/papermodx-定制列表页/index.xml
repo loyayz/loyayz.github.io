@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>PaperModx 定制列表页 on loyayz</title>
+    <link>https://loyayz.com/series/papermodx-%E5%AE%9A%E5%88%B6%E5%88%97%E8%A1%A8%E9%A1%B5/</link>
+    <description>Recent content in PaperModx 定制列表页 on loyayz</description>
+    <image>
+      <url>https://loyayz.com/papermod-cover.png</url>
+      <link>https://loyayz.com/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 11 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/series/papermodx-%E5%AE%9A%E5%88%B6%E5%88%97%E8%A1%A8%E9%A1%B5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PaperModx 模板：统计文章篇数和字数</title>
+      <link>https://loyayz.com/website/220611-hugo-papermodx-template-for-calculate-word-count/</link>
+      <pubDate>Sat, 11 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220611-hugo-papermodx-template-for-calculate-word-count/</guid>
+      <description>需求：新增一个模板，用来统计文章篇数和字数，并展示在列表页和归档页 实现步骤： 新建统计模板 ./layouts/partials/stat.html 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 {{- $scratch := newScratch -}} {{- $kind := .Kind</description>
+    </item>
+    
+    <item>
+      <title>PaperMod 列表文章标题后添加标识</title>
+      <link>https://loyayz.com/website/220603-hugo-papermodx-sign-title-in-list/</link>
+      <pubDate>Fri, 03 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220603-hugo-papermodx-sign-title-in-list/</guid>
+      <description>需求：自动为列表中的文章添加对应的标识：[置顶]、[转载] 将./themes/PaperMod/layouts/_default/list.</description>
+    </item>
+    
+    <item>
+      <title>PaperMod 文章元数据前添加图标</title>
+      <link>https://loyayz.com/website/220602-hugo-papermodx-post-meta/</link>
+      <pubDate>Thu, 02 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220602-hugo-papermodx-post-meta/</guid>
+      <description>1 说明 文章元数据：文章的页面配置及一些内置的变量 1 2 3 4 5 6 7 8 9 10 --- title: &amp;#34;PaperMod 文章元数据前添加图标&amp;#34; date: 2022-06-02 draft: false isCJKLanguage: true tags: [&amp;#34;hugo&amp;#34;, &amp;#34;paper-modx&amp;#34;] categories: [&amp;#34;website&amp;#34;] --- 页面配置：定</description>
+    </item>
+    
+  </channel>
+</rss>
