@@ -9,7 +9,7 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 15 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo Github Pages 网站搭建</title>
       <link>https://loyayz.com/website/220527-hugo-init/</link>
@@ -17,6 +17,15 @@
       
       <guid>https://loyayz.com/website/220527-hugo-init/</guid>
       <description>基于 Hugo 搭建并部署在 Github Pages 1 安装 Hugo 官网教程 新建目录C:\programs\hugo 在官网 下载最新版，本次下载 hugo_extended_0.99.1_Windows-64bit.zip 解压 zip 文件，并将解压出的hugo.</description>
+    </item>
+    
+    <item>
+      <title>IdeaWorlds 前端工程结构</title>
+      <link>https://loyayz.com/coding/220616-iws-client-project-structure/</link>
+      <pubDate>Thu, 16 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/coding/220616-iws-client-project-structure/</guid>
+      <description>IdeaWorlds 前端开发笔记（二） 本篇目标：介绍本项目的前端工程结构规范。 1. 为什么要有结构规范？ 合理的结构能让开发人员快速定位到与特性有关的所有文件 良好的</description>
     </item>
     
     <item>

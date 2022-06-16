@@ -9,7 +9,16 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 15 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/angular/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/angular/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IdeaWorlds 前端工程结构</title>
+      <link>https://loyayz.com/coding/220616-iws-client-project-structure/</link>
+      <pubDate>Thu, 16 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/coding/220616-iws-client-project-structure/</guid>
+      <description>IdeaWorlds 前端开发笔记（二） 本篇目标：介绍本项目的前端工程结构规范。 1. 为什么要有结构规范？ 合理的结构能让开发人员快速定位到与特性有关的所有文件 良好的</description>
+    </item>
+    
     <item>
       <title>IdeaWorlds  初始化前端工程</title>
       <link>https://loyayz.com/coding/220615-iws-client-init/</link>
