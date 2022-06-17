@@ -9,7 +9,16 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 12 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/paper-modx/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/paper-modx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PaperModx 模板：多标签页</title>
+      <link>https://loyayz.com/website/220613-hugo-papermodx-support-tabs/</link>
+      <pubDate>Fri, 17 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220613-hugo-papermodx-support-tabs/</guid>
+      <description>需求：新建一个模板，支持在文章正文中显示多标签页 实现步骤： 创建模板 ./layouts/shortcodes/tabs.html 1 2 3 4 &amp;lt;div class=&amp;#34;x-tabs&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;x-tabs-nav&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;x-tabs-content&amp;#34;&amp;gt;{{ .Inner }}&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; ./layouts/shortcodes/tab.html 1 2 3 &amp;lt;div class=&amp;#34;x-tab&amp;#34; title=&amp;#34;{{ .Get 0 }}&amp;#34;&amp;gt; {{ .Inner }} &amp;lt;/div&amp;gt; 添加样式 ./assets/css/extended/custom.css 1 2 3 4</description>
+    </item>
+    
     <item>
       <title>PaperMod 文章页展示所属系列的文章列表</title>
       <link>https://loyayz.com/website/220612-hugo-papermodx-series-in-post-page/</link>

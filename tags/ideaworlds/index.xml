@@ -9,7 +9,16 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 16 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/ideaworlds/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/ideaworlds/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IdeaWorlds 网站布局</title>
+      <link>https://loyayz.com/coding/220617-iws-client-layout/</link>
+      <pubDate>Fri, 17 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/coding/220617-iws-client-layout/</guid>
+      <description>IdeaWorlds 前端开发笔记（三） 本篇目标：实现网站布局，其中页头全站固定，内容区将随着导航切换而显示对应的组件。 header content 编辑应用组件 src/app/app.component.html 1 2 3 4 5 6 7 8 &amp;lt;div class=&amp;#34;page&amp;#34;&amp;gt; &amp;lt;header&amp;gt;</description>
+    </item>
+    
     <item>
       <title>IdeaWorlds 前端工程结构</title>
       <link>https://loyayz.com/coding/220616-iws-client-project-structure/</link>

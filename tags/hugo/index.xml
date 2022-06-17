@@ -9,7 +9,7 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 12 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo Github Pages 网站搭建</title>
       <link>https://loyayz.com/website/220527-hugo-init/</link>
@@ -17,6 +17,15 @@
       
       <guid>https://loyayz.com/website/220527-hugo-init/</guid>
       <description>基于 Hugo 搭建并部署在 Github Pages 1 安装 Hugo 官网教程 新建目录C:\programs\hugo 在官网 下载最新版，本次下载 hugo_extended_0.99.1_Windows-64bit.zip 解压 zip 文件，并将解压出的hugo.</description>
+    </item>
+    
+    <item>
+      <title>PaperModx 模板：多标签页</title>
+      <link>https://loyayz.com/website/220613-hugo-papermodx-support-tabs/</link>
+      <pubDate>Fri, 17 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220613-hugo-papermodx-support-tabs/</guid>
+      <description>需求：新建一个模板，支持在文章正文中显示多标签页 实现步骤： 创建模板 ./layouts/shortcodes/tabs.html 1 2 3 4 &amp;lt;div class=&amp;#34;x-tabs&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;x-tabs-nav&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;x-tabs-content&amp;#34;&amp;gt;{{ .Inner }}&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; ./layouts/shortcodes/tab.html 1 2 3 &amp;lt;div class=&amp;#34;x-tab&amp;#34; title=&amp;#34;{{ .Get 0 }}&amp;#34;&amp;gt; {{ .Inner }} &amp;lt;/div&amp;gt; 添加样式 ./assets/css/extended/custom.css 1 2 3 4</description>
     </item>
     
     <item>
