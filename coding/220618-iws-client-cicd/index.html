@@ -1,0 +1,297 @@
+<!doctype html><html lang=zh dir=auto><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>IdeaWorlds 前端自动化部署 | loyayz</title><meta name=keywords content="IdeaWorlds,Angular"><meta name=description content="IdeaWorlds 前端开发笔记（三） 本篇目标：介绍本项目的前端自动化部署。 趁 618 买了台腾讯云的服务器折腾了下，因此先提前写下前端部署的笔记，完整流程： 开通容器"><meta name=author content><link rel=canonical href=https://loyayz.com/coding/220618-iws-client-cicd/><link crossorigin=anonymous href=/assets/css/stylesheet.64a33fe2e9f22753f8feb2751af2dd02641174e553f77ba82a188f0ea0c4a3dc.css integrity="sha256-ZKM/4unyJ1P4/rJ1GvLdAmQRdOVT93uoKhiPDqDEo9w=" rel="preload stylesheet" as=style><script defer crossorigin=anonymous src=/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG+9vmJ0cTS+ovo0FeA=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://loyayz.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://loyayz.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://loyayz.com/favicon-32x32.png><link rel=apple-touch-icon href=https://loyayz.com/apple-touch-icon.png><link rel=mask-icon href=https://loyayz.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><script async src="https://www.googletagmanager.com/gtag/js?id=G-E7Y0X8JSJJ"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-E7Y0X8JSJJ",{anonymize_ip:!1})}</script><meta property="og:title" content="IdeaWorlds 前端自动化部署"><meta property="og:description" content="IdeaWorlds 前端开发笔记（三） 本篇目标：介绍本项目的前端自动化部署。 趁 618 买了台腾讯云的服务器折腾了下，因此先提前写下前端部署的笔记，完整流程： 开通容器"><meta property="og:type" content="article"><meta property="og:url" content="https://loyayz.com/coding/220618-iws-client-cicd/"><meta property="og:image" content="https://loyayz.com/papermod-cover.png"><meta property="article:section" content="coding"><meta property="article:published_time" content="2022-06-18T00:00:00+08:00"><meta property="article:modified_time" content="2022-06-18T00:00:00+08:00"><meta property="og:site_name" content="loyayz's blog"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://loyayz.com/papermod-cover.png"><meta name=twitter:title content="IdeaWorlds 前端自动化部署"><meta name=twitter:description content="IdeaWorlds 前端开发笔记（三） 本篇目标：介绍本项目的前端自动化部署。 趁 618 买了台腾讯云的服务器折腾了下，因此先提前写下前端部署的笔记，完整流程： 开通容器"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"编程点滴","item":"https://loyayz.com/coding/"},{"@type":"ListItem","position":2,"name":"IdeaWorlds 前端自动化部署","item":"https://loyayz.com/coding/220618-iws-client-cicd/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"IdeaWorlds 前端自动化部署","name":"IdeaWorlds 前端自动化部署","description":"IdeaWorlds 前端开发笔记（三） 本篇目标：介绍本项目的前端自动化部署。 趁 618 买了台腾讯云的服务器折腾了下，因此先提前写下前端部署的笔记，完整流程： 开通容器","keywords":["IdeaWorlds","Angular"],"articleBody":"IdeaWorlds 前端开发笔记（三）\n本篇目标：介绍本项目的前端自动化部署。\n趁 618 买了台腾讯云的服务器折腾了下，因此先提前写下前端部署的笔记，完整流程：\n开通容器镜像服务 -\u003e 创建命名空间 ideaworlds -\u003e 创建两个镜像仓库 www、console 服务器安装 Docker -\u003e 登录私服 服务器安装 Nginx 并反向代理前端目录 GitHub Action 监听部署分支 1. 前端工程 1.1 GitHub Action 流程配置 自动部署流程 从分支名解析出当前要部署的项目（例：release/www -\u003e 部署www） 设置 Docker 镜像名：{私有仓库}/{命名空间}/{项目名} 获取当前日期、checkout 最新代码、设置 nodejs 环境 npm 打包要部署的项目，并将打包后的文件移到./deploy/dist/ Docker 打包./deploy/：{镜像名}:latest、{镜像名}:当前日期 Docker 登录私有仓库，推送刚打包的两个镜像到仓库 ssh 登录服务器（注意：该服务器需先手动登录 Docker 私有仓库） 创建前端目录：/app/{命名空间}/{项目名} 拉取刚推送的镜像：镜像名:latest 映射前端目录启动一个临时容器，执行成功后将在前端目录创建三个子目录 prev （存放上次的文件，即先从 latest/ 移到 prev/ ） latest （存放最新的文件） latest_bak （存放最新的文件） 删除镜像 ./.github/workflows/deploy.yml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 name: deploy on: push: branches: [ \"release/*\" ] workflow_dispatch: env: docker-registry: ccr.ccs.tencentyun.com docker-namespace: ideaworlds remote-workdir: /app jobs: deploy: runs-on: ubuntu-latest steps: - name: Set env.project run: | echo \"project=${GITHUB_REF#refs/heads/release/}\" \u003e\u003e $GITHUB_ENV - name: Set env.image run: | echo \"image=${{ env.docker-registry }}/${{ env.docker-namespace }}/${{ env.project }}\" \u003e\u003e $GITHUB_ENV - name: Get Time id: time uses: nanzm/get-time-action@v1.1 with: timeZone: 8 format: 'YYMMDD' - uses: actions/checkout@v3 - uses: actions/setup-node@v3 with: node-version: 18 cache: 'npm' - name: npm build run: | npm ci npm run build:${{ env.project }} mv ./dist/${{ env.project }}/ ./deploy/dist/ - name: docker build run: | cd ./deploy docker build -t ${{ env.image }}:latest . docker tag ${{ env.image }}:latest ${{ env.image }}:${{ steps.time.outputs.time }} - name: Login to Docker Registry uses: docker/login-action@v2 with: registry: ${{ env.docker-registry }} username: ${{ secrets.DOCKER_USER }} password: ${{ secrets.DOCKER_TOKEN }} - name: Push to Docker Registry run: | docker push ${{ env.image }}:latest docker push ${{ env.image }}:${{ steps.time.outputs.time }} - name: Run Docker Image uses: appleboy/ssh-action@master with: host: ${{ secrets.REMOTE_HOST }} username: ${{ secrets.REMOTE_USER }} key: ${{ secrets.REMOTE_KEY }} script_stop: true script: | mkdir -p ${{ env.remote-workdir }}/${{ env.docker-namespace }}/${{ env.project }} docker pull ${{ env.image }}:latest docker run --rm -v ${{ env.remote-workdir }}/${{ env.docker-namespace }}/${{ env.project }}:/app/data ${{ env.image }}:latest docker rmi ${{ env.image }}:latest 1.2 Angular 打包 开启 gzip\n1 2 npm install --save-dev gulp-gzip npm install --save-dev gulp ./gulpfile.js 1 2 3 4 5 6 7 8 9 // gulpfile.js 与 package.json 同级 let gulp = require('gulp'); let gzip = require('gulp-gzip'); gulp.task('compress', function () { return gulp.src(['./dist/**/*.js', './dist/**/*.css']) .pipe(gzip()) .pipe(gulp.dest('./dist')); }); 修改部署包大小限制\nAngular 默认打包大小超过 1m 会失败，我们的原部署包刚好超过 1m 一点点，gzip 压缩后不到 200k，因为需要放开这个限制。\n./angular.json 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 { \"projects\": { \"www\": { \"architect\": { \"build\": { \"configurations\": { \"production\": { { \"type\": \"initial\", \"maximumWarning\": \"1mb\", \"maximumError\": \"2mb\" 修改这个 } }, \"console\": 同上面 } 编写打包脚本\n./package.json 1 2 3 4 5 6 7 8 9 10 { \"scripts\": { \"ng\": \"ng\", \"start:www\": \"ng serve --project www --open\", \"build:www\": \"ng build --project www \u0026\u0026 gulp compress\", \"start:console\": \"ng serve --project console --open\", \"build:console\": \"ng build --project console \u0026\u0026 gulp compress\", \"build\": \"npm run build:www \u0026\u0026 npm run build:console\" } } 1.3 Docker 打包 Dockerfile ./deploy/Dockerfile 1 2 3 FROM alpine:latest COPY . /app ENTRYPOINT [\"sh\", \"/app/docker-entrypoint.sh\"] Docker 容器内自动执行脚本 ./deploy/docker-entrypoint.sh 1 2 3 4 5 6 7 8 9 10 #!/bin/sh mkdir -p ./app/data/prev/ mkdir -p ./app/data/latest/ mkdir -p ./app/data/latest_bak/ rm -rf ./app/data/prev/ mv ./app/data/latest/ ./app/data/prev/ cp -r ./app/dist/ ./app/data/latest/ rm -rf ./app/data/latest_bak/ cp -r ./app/dist/ ./app/data/latest_bak/ 2. 服务器 2.1 安装 Docker 安装文档：Docker 官网 、腾讯云 开通容器镜像服务并登录私服 2.2 配置 Nginx 使用docker compose启动 Nginx 服务\n创建 Nginx 目录 1 2 mkdir -p /data/nginx mkdir -p /data/nginx/conf.d 编写 Docker Compose 配置 /data/nginx/docker-compose.yml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 version: '3.0' services: nginx: restart: always image: nginx:latest container_name: nginx ports: - 80:80 - 443:443 volumes: - ./nginx.conf:/etc/nginx/nginx.conf - ./conf.d:/etc/nginx/conf.d - ./logs:/var/log/nginx 使用nginx:latest镜像启动一个名为nginx的容器，并映射服务器的 80 和 443 端口。\n启动 Nginx 服务 1 docker compose up -d 编写两个脚本用于更新 Nginx 服务 /data/nginx/test_conf.sh 1 docker exec nginx nginx -t /data/nginx/reload_nginx.sh 1 docker exec nginx nginx -s reload 修改 Nginx 配置后\n执行 sh ./test_conf.sh 校验配置是否正常\n执行 sh ./reload_nginx.sh 重启 Nginx 服务\n配置前端反向代理 在./conf.d/目录下新建 Nginx 配置反向代理前端目录/app/ideaworlds/ www.ideaworlds.info -\u003e www/latest、www/latest_bak console.ideaworlds.info -\u003e console/latest、console/latest_bak 重启 Nginx 服务 2.3 生成密钥 腾讯云文档 3. GitHub 进入 远程仓库的设置选项 在Secrets/actions添加几个仓库的密钥\nkey 说明 DOCKER_USER Docker 私服用户名 DOCKER_TOKEN Docker 私服用户密码 REMOTE_HOST 远程服务器 ip REMOTE_USER 远程服务器 ssh 用户名 REMOTE_KEY 远程服务器 ssh 私钥 4. 总结 以上全部为一次性配置后续无需再修改，前端工程中推送代码到 release/ 开头的分支将触发 GitHub Action 部署流程，自动打包前端代码更新到服务器对应的目录下。\n","wordCount":"1553","inLanguage":"zh","datePublished":"2022-06-18T00:00:00+08:00","dateModified":"2022-06-18T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://loyayz.com/coding/220618-iws-client-cicd/"},"publisher":{"@type":"Organization","name":"loyayz","logo":{"@type":"ImageObject","url":"https://loyayz.com/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://loyayz.com/ accesskey=h title="loyayz (Alt + H)">loyayz</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://loyayz.com/coding/ title=编程点滴><span>编程点滴</span></a></li><li><a href=https://loyayz.com/website/ title=建站笔记><span>建站笔记</span></a></li><li><a href=https://loyayz.com/search/ title=搜索><span>搜索</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://loyayz.com/>主页</a>&nbsp;»&nbsp;<a href=https://loyayz.com/coding/>编程点滴</a></div><h1 class=post-title>IdeaWorlds 前端自动化部署</h1><div class=post-meta><span class=x-post-meta-item><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentcolor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar" style="user-select:text"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" style="user-select:text"/><line x1="16" y1="2" x2="16" y2="6" style="user-select:text"/><line x1="8" y1="2" x2="8" y2="6" style="user-select:text"/><line x1="3" y1="10" x2="21" y2="10" style="user-select:text"/></svg><span>2022-06-18</span></span>&nbsp;·&nbsp;<span class=x-post-meta-item><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentcolor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text" style="user-select:text"><path d="M14 2H6A2 2 0 004 4v16a2 2 0 002 2h12a2 2 0 002-2V8z" style="user-select:text"/><polyline points="14 2 14 8 20 8" style="user-select:text"/><line x1="16" y1="13" x2="8" y2="13" style="user-select:text"/><line x1="16" y1="17" x2="8" y2="17" style="user-select:text"/><polyline points="10 9 9 9 8 9" style="user-select:text"/></svg><span>1553 字</span></span>&nbsp;·&nbsp;<span class=x-post-meta-item><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentcolor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><span>4 分钟</span></span></div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>目录</span></summary><div class=inner><ul><li><a href=#1-%e5%89%8d%e7%ab%af%e5%b7%a5%e7%a8%8b aria-label="1. 前端工程">1. 前端工程</a><ul><li><a href=#11-github-action-%e6%b5%81%e7%a8%8b%e9%85%8d%e7%bd%ae aria-label="1.1 GitHub Action 流程配置">1.1 GitHub Action 流程配置</a></li><li><a href=#12-angular-%e6%89%93%e5%8c%85 aria-label="1.2 Angular 打包">1.2 Angular 打包</a></li><li><a href=#13-docker-%e6%89%93%e5%8c%85 aria-label="1.3 Docker 打包">1.3 Docker 打包</a></li></ul></li><li><a href=#2-%e6%9c%8d%e5%8a%a1%e5%99%a8 aria-label="2. 服务器">2. 服务器</a><ul><li><a href=#21-%e5%ae%89%e8%a3%85-docker aria-label="2.1 安装 Docker">2.1 安装 Docker</a></li><li><a href=#22-%e9%85%8d%e7%bd%ae-nginx aria-label="2.2 配置 Nginx">2.2 配置 Nginx</a></li><li><a href=#23-%e7%94%9f%e6%88%90%e5%af%86%e9%92%a5 aria-label="2.3 生成密钥">2.3 生成密钥</a></li></ul></li><li><a href=#3-github aria-label="3. GitHub">3. GitHub</a></li><li><a href=#4-%e6%80%bb%e7%bb%93 aria-label="4. 总结">4. 总结</a></li></ul></div></details></div><div class=post-content><p>IdeaWorlds 前端开发笔记（三）</p><p><strong>本篇目标</strong>：介绍本项目的前端自动化部署。</p><p>趁 618 买了台腾讯云的服务器折腾了下，因此先提前写下前端部署的笔记，完整流程：</p><blockquote><ol><li>开通<a href=https://console.cloud.tencent.com/tcr target=_blank rel="noopener noreferrer nofollow">容器镜像服务</a>
+-> 创建命名空间 ideaworlds -> 创建两个镜像仓库 www、console</li><li>服务器安装 Docker -> <a href=https://cloud.tencent.com/document/product/1141/63910 target=_blank rel="noopener noreferrer nofollow">登录私服</a></li><li>服务器安装 Nginx 并反向代理前端目录</li><li>GitHub Action 监听部署分支</li></ol></blockquote><h2 id=1-前端工程>1. 前端工程<a hidden class=anchor aria-hidden=true href=#1-前端工程>#</a></h2><h3 id=11-github-action-流程配置>1.1 GitHub Action 流程配置<a hidden class=anchor aria-hidden=true href=#11-github-action-流程配置>#</a></h3><ul><li>自动部署流程<ul><li>从分支名解析出当前要部署的项目（例：<code>release/www</code> -> 部署<code>www</code>）</li><li>设置 Docker 镜像名：{私有仓库}/{命名空间}/{项目名}</li><li>获取当前日期、checkout 最新代码、设置 nodejs 环境</li><li>npm 打包要部署的项目，并将打包后的文件移到<code>./deploy/dist/</code></li><li>Docker 打包<code>./deploy/</code>：{镜像名}:latest、{镜像名}:当前日期</li><li>Docker 登录私有仓库，推送刚打包的两个镜像到仓库</li><li>ssh 登录服务器（注意：该服务器需先手动登录 Docker 私有仓库）<ul><li>创建前端目录：/app/{命名空间}/{项目名}</li><li>拉取刚推送的镜像：镜像名:latest</li><li>映射前端目录启动一个临时容器，执行成功后将在前端目录创建三个子目录<ul><li>prev （存放上次的文件，即先从 latest/ 移到 prev/ ）</li><li>latest （存放最新的文件）</li><li>latest_bak （存放最新的文件）</li></ul></li><li>删除镜像</li></ul></li></ul><div class=x-highlight-wrapper><div class=x-highlight-title><strong></strong>
+./.github/workflows/deploy.yml</div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yml data-lang=yml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>deploy</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>on</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>push</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>branches</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=w> </span><span class=s2>&#34;release/*&#34;</span><span class=w> </span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>workflow_dispatch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>env</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>docker-registry</span><span class=p>:</span><span class=w> </span><span class=l>ccr.ccs.tencentyun.com</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>docker-namespace</span><span class=p>:</span><span class=w> </span><span class=l>ideaworlds</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>remote-workdir</span><span class=p>:</span><span class=w> </span><span class=l>/app</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>jobs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>deploy</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Set env.project</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          </span><span class=w>          </span><span class=l>echo &#34;project=${GITHUB_REF#refs/heads/release/}&#34; &gt;&gt; $GITHUB_ENV</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Set env.image</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          </span><span class=w>          </span><span class=l>echo &#34;image=${{ env.docker-registry }}/${{ env.docker-namespace }}/${{ env.project }}&#34; &gt;&gt; $GITHUB_ENV</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Get Time</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>id</span><span class=p>:</span><span class=w> </span><span class=l>time</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>nanzm/get-time-action@v1.1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>timeZone</span><span class=p>:</span><span class=w> </span><span class=m>8</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>format</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;YYMMDD&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/setup-node@v3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>node-version</span><span class=p>:</span><span class=w> </span><span class=m>18</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>cache</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;npm&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>npm build</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          npm ci
+</span></span></span><span class=line><span class=cl><span class=sd>          npm run build:${{ env.project }}
+</span></span></span><span class=line><span class=cl><span class=sd>          mv ./dist/${{ env.project }}/ ./deploy/dist/</span><span class=w>          
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>docker build</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          cd ./deploy
+</span></span></span><span class=line><span class=cl><span class=sd>          docker build -t ${{ env.image }}:latest .
+</span></span></span><span class=line><span class=cl><span class=sd>          docker tag ${{ env.image }}:latest ${{ env.image }}:${{ steps.time.outputs.time }}</span><span class=w>          
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Login to Docker Registry</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>docker/login-action@v2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>registry</span><span class=p>:</span><span class=w> </span><span class=l>${{ env.docker-registry }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>username</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.DOCKER_USER }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>password</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.DOCKER_TOKEN }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Push to Docker Registry</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          docker push ${{ env.image }}:latest
+</span></span></span><span class=line><span class=cl><span class=sd>          docker push ${{ env.image }}:${{ steps.time.outputs.time }}</span><span class=w>          
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Run Docker Image</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>appleboy/ssh-action@master</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>host</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.REMOTE_HOST }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>username</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.REMOTE_USER }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.REMOTE_KEY }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>script_stop</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>script</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>            mkdir -p ${{ env.remote-workdir }}/${{ env.docker-namespace }}/${{ env.project }}
+</span></span></span><span class=line><span class=cl><span class=sd>            docker pull ${{ env.image }}:latest
+</span></span></span><span class=line><span class=cl><span class=sd>            docker run --rm -v ${{ env.remote-workdir }}/${{ env.docker-namespace }}/${{ env.project }}:/app/data ${{ env.image }}:latest
+</span></span></span><span class=line><span class=cl><span class=sd>            docker rmi ${{ env.image }}:latest</span><span class=w>            </span></span></span></code></pre></td></tr></table></div></div></div></li></ul><h3 id=12-angular-打包>1.2 Angular 打包<a hidden class=anchor aria-hidden=true href=#12-angular-打包>#</a></h3><ul><li><p>开启 gzip</p><div class=x-highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>npm install --save-dev gulp-gzip
+</span></span><span class=line><span class=cl>npm install --save-dev gulp</span></span></code></pre></td></tr></table></div></div></div><div class=x-highlight-wrapper><div class=x-highlight-title><strong></strong>
+./gulpfile.js</div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// gulpfile.js 与 package.json 同级
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>let</span> <span class=nx>gulp</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;gulp&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>gzip</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;gulp-gzip&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>gulp</span><span class=p>.</span><span class=nx>task</span><span class=p>(</span><span class=s1>&#39;compress&#39;</span><span class=p>,</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>gulp</span><span class=p>.</span><span class=nx>src</span><span class=p>([</span><span class=s1>&#39;./dist/**/*.js&#39;</span><span class=p>,</span> <span class=s1>&#39;./dist/**/*.css&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>pipe</span><span class=p>(</span><span class=nx>gzip</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>pipe</span><span class=p>(</span><span class=nx>gulp</span><span class=p>.</span><span class=nx>dest</span><span class=p>(</span><span class=s1>&#39;./dist&#39;</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=p>});</span></span></span></code></pre></td></tr></table></div></div></div></li><li><p>修改部署包大小限制</p><p>Angular 默认打包大小超过 1m 会失败，我们的原部署包刚好超过 1m 一点点，gzip 压缩后不到 200k，因为需要放开这个限制。</p><div class=x-highlight-wrapper><div class=x-highlight-title><strong></strong>
+./angular.json</div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;projects&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;www&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;architect&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;build&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;configurations&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;production&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>              <span class=err>{</span>
+</span></span><span class=line><span class=cl>                <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;initial&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=nt>&#34;maximumWarning&#34;</span><span class=p>:</span> <span class=s2>&#34;1mb&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=nt>&#34;maximumError&#34;</span><span class=p>:</span> <span class=s2>&#34;2mb&#34;</span>    <span class=err>修改这个</span>
+</span></span><span class=line><span class=cl>              <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;console&#34;</span><span class=p>:</span> <span class=err>同上面</span> 
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div></div></li><li><p>编写打包脚本</p><div class=x-highlight-wrapper><div class=x-highlight-title><strong></strong>
+./package.json</div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;scripts&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;ng&#34;</span><span class=p>:</span> <span class=s2>&#34;ng&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;start:www&#34;</span><span class=p>:</span> <span class=s2>&#34;ng serve --project www --open&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;build:www&#34;</span><span class=p>:</span> <span class=s2>&#34;ng build --project www &amp;&amp; gulp compress&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;start:console&#34;</span><span class=p>:</span> <span class=s2>&#34;ng serve --project console --open&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;build:console&#34;</span><span class=p>:</span> <span class=s2>&#34;ng build --project console &amp;&amp; gulp compress&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;build&#34;</span><span class=p>:</span> <span class=s2>&#34;npm run build:www &amp;&amp; npm run build:console&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div></div></li></ul><h3 id=13-docker-打包>1.3 Docker 打包<a hidden class=anchor aria-hidden=true href=#13-docker-打包>#</a></h3><ul><li>Dockerfile<div class=x-highlight-wrapper><div class=x-highlight-title><strong></strong>
+./deploy/Dockerfile</div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=line><span class=cl><span class=k>FROM</span><span class=s> alpine:latest</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>COPY</span> . /app<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>ENTRYPOINT</span> <span class=p>[</span><span class=s2>&#34;sh&#34;</span><span class=p>,</span> <span class=s2>&#34;/app/docker-entrypoint.sh&#34;</span><span class=p>]</span></span></span></code></pre></td></tr></table></div></div></div></li><li>Docker 容器内自动执行脚本<div class=x-highlight-wrapper><div class=x-highlight-title><strong></strong>
+./deploy/docker-entrypoint.sh</div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=cp>#!/bin/sh
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl>mkdir -p ./app/data/prev/
+</span></span><span class=line><span class=cl>mkdir -p ./app/data/latest/
+</span></span><span class=line><span class=cl>mkdir -p ./app/data/latest_bak/
+</span></span><span class=line><span class=cl>rm -rf ./app/data/prev/
+</span></span><span class=line><span class=cl>mv ./app/data/latest/ ./app/data/prev/
+</span></span><span class=line><span class=cl>cp -r ./app/dist/ ./app/data/latest/
+</span></span><span class=line><span class=cl>rm -rf ./app/data/latest_bak/
+</span></span><span class=line><span class=cl>cp -r ./app/dist/ ./app/data/latest_bak/</span></span></code></pre></td></tr></table></div></div></div></li></ul><h2 id=2-服务器>2. 服务器<a hidden class=anchor aria-hidden=true href=#2-服务器>#</a></h2><h3 id=21-安装-docker>2.1 安装 Docker<a hidden class=anchor aria-hidden=true href=#21-安装-docker>#</a></h3><ul><li>安装文档：<a href=https://docs.docker.com/engine/install/ target=_blank rel="noopener noreferrer nofollow">Docker 官网</a>
+、<a href=https://cloud.tencent.com/document/product/1207/45596 target=_blank rel="noopener noreferrer nofollow">腾讯云</a></li><li><a href=https://cloud.tencent.com/document/product/1141/63910 target=_blank rel="noopener noreferrer nofollow">开通容器镜像服务并登录私服</a></li></ul><h3 id=22-配置-nginx>2.2 配置 Nginx<a hidden class=anchor aria-hidden=true href=#22-配置-nginx>#</a></h3><p>使用<code>docker compose</code>启动 Nginx 服务</p><ul><li>创建 Nginx 目录<div class=x-highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>mkdir -p /data/nginx 
+</span></span><span class=line><span class=cl>mkdir -p /data/nginx/conf.d </span></span></code></pre></td></tr></table></div></div></div></li><li>编写 Docker Compose 配置<div class=x-highlight-wrapper><div class=x-highlight-title><strong></strong>
+/data/nginx/docker-compose.yml</div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yml data-lang=yml><span class=line><span class=cl><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;3.0&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>services</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>nginx</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>restart</span><span class=p>:</span><span class=w> </span><span class=l>always</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>nginx:latest</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>container_name</span><span class=p>:</span><span class=w> </span><span class=l>nginx</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=m>80</span><span class=p>:</span><span class=m>80</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=m>443</span><span class=p>:</span><span class=m>443</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>./nginx.conf:/etc/nginx/nginx.conf</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>./conf.d:/etc/nginx/conf.d</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>./logs:/var/log/nginx</span></span></span></code></pre></td></tr></table></div></div></div><blockquote><p>使用<code>nginx:latest</code>镜像启动一个名为<code>nginx</code>的容器，并映射服务器的 80 和 443 端口。</p></blockquote></li><li>启动 Nginx 服务<div class=x-highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>docker compose up -d</span></span></code></pre></td></tr></table></div></div></div></li><li>编写两个脚本用于更新 Nginx 服务<div class=x-highlight-wrapper><div class=x-highlight-title><strong></strong>
+/data/nginx/test_conf.sh</div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>docker <span class=nb>exec</span> nginx nginx -t</span></span></code></pre></td></tr></table></div></div></div><div class=x-highlight-wrapper><div class=x-highlight-title><strong></strong>
+/data/nginx/reload_nginx.sh</div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>docker <span class=nb>exec</span> nginx nginx -s reload</span></span></code></pre></td></tr></table></div></div></div><blockquote><p>修改 Nginx 配置后</p><p>执行 <code>sh ./test_conf.sh</code> 校验配置是否正常</p><p>执行 <code>sh ./reload_nginx.sh</code> 重启 Nginx 服务</p></blockquote></li><li>配置前端反向代理<ul><li>在<code>./conf.d/</code>目录下新建 Nginx 配置反向代理前端目录<code>/app/ideaworlds/</code><ul><li><a href=https://ideaworlds.info target=_blank rel="noopener noreferrer nofollow">www.ideaworlds.info</a>
+-> <code>www/latest</code>、<code>www/latest_bak</code></li><li><a href=https://console.ideaworlds.info target=_blank rel="noopener noreferrer nofollow">console.ideaworlds.info</a>
+-> <code>console/latest</code>、<code>console/latest_bak</code></li></ul></li><li>重启 Nginx 服务</li></ul></li></ul><h3 id=23-生成密钥>2.3 生成密钥<a hidden class=anchor aria-hidden=true href=#23-生成密钥>#</a></h3><p><a href=https://cloud.tencent.com/document/product/1207/44573 target=_blank rel="noopener noreferrer nofollow">腾讯云文档</a></p><h2 id=3-github>3. GitHub<a hidden class=anchor aria-hidden=true href=#3-github>#</a></h2><p>进入 <a href=https://github.com/idea-worlds/idea-worlds/settings target=_blank rel="noopener noreferrer nofollow">远程仓库的设置选项</a>
+在<code>Secrets/actions</code>添加几个仓库的密钥</p><table><thead><tr><th>key</th><th>说明</th></tr></thead><tbody><tr><td>DOCKER_USER</td><td>Docker 私服用户名</td></tr><tr><td>DOCKER_TOKEN</td><td>Docker 私服用户密码</td></tr><tr><td>REMOTE_HOST</td><td>远程服务器 ip</td></tr><tr><td>REMOTE_USER</td><td>远程服务器 ssh 用户名</td></tr><tr><td>REMOTE_KEY</td><td>远程服务器 ssh 私钥</td></tr></tbody></table><h2 id=4-总结>4. 总结<a hidden class=anchor aria-hidden=true href=#4-总结>#</a></h2><p>以上全部为一次性配置后续无需再修改，前端工程中推送代码到 release/ 开头的分支将触发 GitHub Action 部署流程，自动打包前端代码更新到服务器对应的目录下。</p></div><footer class=post-footer><div class=x-post-series><details open><summary>IdeaWorlds 前端开发笔记</summary><ol><li><a href=https://loyayz.com/coding/220615-iws-client-init/>IdeaWorlds 初始化前端工程</a>
+<sub>2022-06-15</sub></li><li><a href=https://loyayz.com/coding/220616-iws-client-project-structure/>IdeaWorlds 前端工程结构</a>
+<sub>2022-06-16</sub></li><li><a href=https://loyayz.com/coding/220618-iws-client-cicd/>IdeaWorlds 前端自动化部署</a>
+<sub>2022-06-18</sub></li><li><a href=https://loyayz.com/coding/220619-iws-client-layout/>IdeaWorlds 网站布局</a>
+<sub>2022-06-19</sub></li></ol></details></div><ul class=post-tags><li><a href=https://loyayz.com/tags/ideaworlds/>IdeaWorlds</a></li><li><a href=https://loyayz.com/tags/angular/>Angular</a></li></ul><div class=breadcrumbs><a href=https://loyayz.com/>主页</a>&nbsp;»&nbsp;<a href=https://loyayz.com/coding/>编程点滴</a></div><nav class=paginav><a class=prev href=https://loyayz.com/coding/220619-iws-client-layout/><span class=title>« 上一篇</span><br><span>IdeaWorlds 网站布局</span></a>
+<a class=next href=https://loyayz.com/website/220613-hugo-papermodx-support-tabs/><span class=title>下一篇 »</span><br><span>PaperModx 模板：多标签页</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2022 <a href=/about/>loyayz</a></span>
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/loyayz/hugo-PaperModx/ rel=noopener target=_blank>PaperModx</a></span>
+<span>·&nbsp;<a href=/copyright/>版权说明</a></span>
+<span>·&nbsp;22 篇 12017 字</span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script><script defer crossorigin=anonymous src=/js/random-image.min.js></script><script>const removeClass=(e,t)=>{document.querySelectorAll(e).forEach(e=>{e.classList.remove(t)})},$tabsContent=document.querySelector(".x-tabs-content"),$tabsNav=document.querySelector(".x-tabs-nav");document.querySelectorAll(".x-tab").forEach(e=>{const n=e.getAttribute("title")||"tab",t=document.createElement("div");t.classList.add("x-tabs-nav-item"),t.innerHTML="<span>"+n+"</span>",$tabsNav.append(t)}),document.querySelectorAll(".x-tabs-nav-item").forEach(e=>{e.addEventListener("click",t=>{t.preventDefault(),removeClass(".x-tabs-nav-item","active"),removeClass(".x-tab","active"),e.classList.add("active");const n=Array.from(e.parentNode.children).indexOf(e);$tabsContent.children.item(n).classList.add("active")})});const $firstNav=$tabsNav.querySelector(".x-tabs-nav-item:first-child");$firstNav&&$firstNav.click()</script></body></html>
