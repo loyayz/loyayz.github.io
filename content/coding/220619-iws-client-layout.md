@@ -1,13 +1,13 @@
 ---
 title: "IdeaWorlds 网站布局"
-date: 2022-06-17
+date: 2022-06-19
 draft: false
 isCJKLanguage: true
 tags: ["IdeaWorlds", "Angular"]
 series: ["IdeaWorlds 前端开发笔记"]
 ---
 
-IdeaWorlds 前端开发笔记（三）
+IdeaWorlds 前端开发笔记（四）
 
 **本篇目标**：实现网站布局，其中页头全站固定，内容区将随着导航切换而显示对应的组件。
 
@@ -72,7 +72,6 @@ IdeaWorlds 前端开发笔记（三）
    .page-main {
      width: var(--iws-main-width);
      min-height: calc(~"100vh - var(--iws-header-height) - var(--iws-gap)");
-     background: var(--iws-background-color);
      margin: calc(~"var(--iws-header-height) + var(--iws-gap)") auto 0 auto;
    }
    ```
