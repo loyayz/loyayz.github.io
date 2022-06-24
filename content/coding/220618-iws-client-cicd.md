@@ -1,3 +1,4 @@
+
 ---
 title: "IdeaWorlds 前端自动化部署"
 date: 2022-06-18
@@ -134,7 +135,7 @@ IdeaWorlds 前端开发笔记（三）
 
 - 修改部署包大小限制
 
-  Angular 默认打包大小超过 1m 会失败，我们的原部署包刚好超过 1m 一点点，gzip 压缩后不到 200k，因为需要放开这个限制。
+  Angular 默认打包大小超过 1m 会失败，我们的原部署包刚好超过 1m 一点点，gzip 压缩后不到 200k，因此需要放开这个限制。
 
   ```json { title="./angular.json" }
   {
@@ -242,7 +243,7 @@ IdeaWorlds 前端开发笔记（三）
   > 
   > 执行 `sh ./reload_nginx.sh` 重启 Nginx 服务
 - 配置前端反向代理
-  - 在`./conf.d/`目录下新建 Nginx 配置反向代理前端目录`/app/ideaworlds/`
+  - 在`./conf.d/`目录下新建 Nginx 配置文件并指向前端目录`/app/ideaworlds/`
     - [www.ideaworlds.info](https://ideaworlds.info) -> `www/latest`、`www/latest_bak`
     - [console.ideaworlds.info](https://console.ideaworlds.info) -> `console/latest`、`console/latest_bak`
   - 重启 Nginx 服务

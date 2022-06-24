@@ -1,5 +1,5 @@
 ---
-title: "IdeaWorlds  初始化前端工程"
+title: "IdeaWorlds 初始化前端工程"
 date: 2022-06-15
 draft: false
 isCJKLanguage: true
@@ -8,6 +8,8 @@ series: ["IdeaWorlds 前端开发笔记"]
 ---
 
 IdeaWorlds 前端开发笔记（一）
+
+**本篇目标**：介绍 Angular 工程初始化步骤。
 
 《**IdeaWorlds 前端开发笔记**》记录从初始化到部署的过程，前端选用的`Angular`在国内使用人较少，希望本系列文章能帮助到初识该框架的开发，也希望未来会有同伴参与本项目。
 
