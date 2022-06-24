@@ -56,12 +56,21 @@
     </item>
     
     <item>
-      <title>IdeaWorlds  初始化前端工程</title>
+      <title>IdeaWorlds 初始化前端工程</title>
       <link>https://loyayz.com/coding/220615-iws-client-init/</link>
       <pubDate>Wed, 15 Jun 2022 00:00:00 +0800</pubDate>
       
       <guid>https://loyayz.com/coding/220615-iws-client-init/</guid>
-      <description>IdeaWorlds 前端开发笔记（一） 《IdeaWorlds 前端开发笔记》记录从初始化到部署的过程，前端选用的Angular在国内使用人较少，希望本系列文章能</description>
+      <description>IdeaWorlds 前端开发笔记（一） 本篇目标：介绍 Angular 工程初始化步骤。 《IdeaWorlds 前端开发笔记》记录从初始化到部署的过程，前端选用的Angular在</description>
+    </item>
+    
+    <item>
+      <title>允许禁用校验文件完整性</title>
+      <link>https://loyayz.com/website/220614-hugo-papermodx-allow-disable-integrity/</link>
+      <pubDate>Tue, 14 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220614-hugo-papermodx-allow-disable-integrity/</guid>
+      <description>需求：加一个参数控制是否禁用head.html中的integrity校验。 起因：我有个网站的部署方式是手动打包后git push到远端，服务器</description>
     </item>
     
     <item>

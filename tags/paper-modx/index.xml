@@ -20,6 +20,15 @@
     </item>
     
     <item>
+      <title>允许禁用校验文件完整性</title>
+      <link>https://loyayz.com/website/220614-hugo-papermodx-allow-disable-integrity/</link>
+      <pubDate>Tue, 14 Jun 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/website/220614-hugo-papermodx-allow-disable-integrity/</guid>
+      <description>需求：加一个参数控制是否禁用head.html中的integrity校验。 起因：我有个网站的部署方式是手动打包后git push到远端，服务器</description>
+    </item>
+    
+    <item>
       <title>PaperMod 文章页展示所属系列的文章列表</title>
       <link>https://loyayz.com/website/220612-hugo-papermodx-series-in-post-page/</link>
       <pubDate>Sun, 12 Jun 2022 00:00:00 +0800</pubDate>

@@ -38,12 +38,12 @@
     </item>
     
     <item>
-      <title>IdeaWorlds  初始化前端工程</title>
+      <title>IdeaWorlds 初始化前端工程</title>
       <link>https://loyayz.com/coding/220615-iws-client-init/</link>
       <pubDate>Wed, 15 Jun 2022 00:00:00 +0800</pubDate>
       
       <guid>https://loyayz.com/coding/220615-iws-client-init/</guid>
-      <description>IdeaWorlds 前端开发笔记（一） 《IdeaWorlds 前端开发笔记》记录从初始化到部署的过程，前端选用的Angular在国内使用人较少，希望本系列文章能</description>
+      <description>IdeaWorlds 前端开发笔记（一） 本篇目标：介绍 Angular 工程初始化步骤。 《IdeaWorlds 前端开发笔记》记录从初始化到部署的过程，前端选用的Angular在</description>
     </item>
     
   </channel>
