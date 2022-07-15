@@ -1,5 +1,5 @@
 ---
-title: "允许禁用校验文件完整性"
+title: "PaperMod 允许禁用校验文件完整性"
 date: 2022-06-14
 draft: false
 isCJKLanguage: true

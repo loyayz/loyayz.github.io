@@ -1,6 +1,6 @@
 ---
 title: "PaperModx 模板：多标签页"
-date: 2022-06-17
+date: 2022-06-13
 draft: false
 isCJKLanguage: true
 tags: ["hugo", "paper-modx"]
@@ -73,39 +73,41 @@ tags: ["hugo", "paper-modx"]
 
     ```javascript { title="./layouts/partials/footer.html" }
     <script>
-    const removeClass = (el, className) => {
-        document.querySelectorAll(el).forEach($el => {
+    const removeClass = (parent, el, className) => {
+        parent.querySelectorAll(el).forEach($el => {
             $el.classList.remove(className);
         });
     };
 
-    const $tabsContent = document.querySelector('.x-tabs-content');
-    const $tabsNav = document.querySelector('.x-tabs-nav');
+    document.querySelectorAll('.x-tabs').forEach(tabs => {
+        const $tabsNav = tabs.querySelector('.x-tabs-nav');
+        const $tabsContent = tabs.querySelector('.x-tabs-content');
 
-    document.querySelectorAll('.x-tab').forEach(tab => {
-        const title = tab.getAttribute('title') || 'tab';
-        const nav = document.createElement('div');
-        nav.classList.add('x-tabs-nav-item')
-        nav.innerHTML = '<span>' + title + '</span>';
-        $tabsNav.append(nav);
-    });
-
-    document.querySelectorAll('.x-tabs-nav-item').forEach($navItem => {
-        $navItem.addEventListener('click', e => {
-            e.preventDefault();
-            removeClass('.x-tabs-nav-item', 'active');
-            removeClass('.x-tab', 'active');
-            $navItem.classList.add('active');
-
-            const index = Array.from($navItem.parentNode.children).indexOf($navItem);
-            $tabsContent.children.item(index).classList.add('active');
+        tabs.querySelectorAll('.x-tab').forEach(tab => {
+            const title = tab.getAttribute('title') || 'tab';
+            const nav = document.createElement('div');
+            nav.classList.add('x-tabs-nav-item')
+            nav.innerHTML = '<span>' + title + '</span>';
+            $tabsNav.append(nav);
         });
-    });
 
-    const $firstNav = $tabsNav.querySelector('.x-tabs-nav-item:first-child');
-    if ($firstNav) {
-        $firstNav.click();
-    }
+        tabs.querySelectorAll('.x-tabs-nav-item').forEach($navItem => {
+            $navItem.addEventListener('click', e => {
+                e.preventDefault();
+                removeClass(tabs, '.x-tabs-nav-item', 'active');
+                removeClass(tabs, '.x-tab', 'active');
+                $navItem.classList.add('active');
+
+                const index = Array.from($navItem.parentNode.children).indexOf($navItem);
+                $tabsContent.children.item(index).classList.add('active');
+            });
+        });
+
+        const $firstNav = $tabsNav.querySelector('.x-tabs-nav-item:first-child');
+        if ($firstNav) {
+            $firstNav.click();
+        }
+    });
     </script>
     ```
 
