@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>VMware on loyayz</title>
+    <link>https://loyayz.com/tags/vmware/</link>
+    <description>Recent content in VMware on loyayz</description>
+    <image>
+      <url>https://loyayz.com/papermod-cover.png</url>
+      <link>https://loyayz.com/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 15 Jul 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/tags/vmware/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>虚拟机麒麟系统安装 VMware Tools</title>
+      <link>https://loyayz.com/coding/220715-kylin-install-vmware-tools/</link>
+      <pubDate>Fri, 15 Jul 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/coding/220715-kylin-install-vmware-tools/</guid>
+      <description>系统信息 主机：Windows 10 Pro 虚拟机： VMware Workstation 16 Pro 16.2.3 麒麟系统：Kylin-Server-10-SP1-Release-Build20-2021</description>
+    </item>
+    
+  </channel>
+</rss>

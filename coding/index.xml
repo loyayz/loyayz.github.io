@@ -9,7 +9,16 @@
       <link>https://loyayz.com/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 19 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/coding/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Jul 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://loyayz.com/coding/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>虚拟机麒麟系统安装 VMware Tools</title>
+      <link>https://loyayz.com/coding/220715-kylin-install-vmware-tools/</link>
+      <pubDate>Fri, 15 Jul 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://loyayz.com/coding/220715-kylin-install-vmware-tools/</guid>
+      <description>系统信息 主机：Windows 10 Pro 虚拟机： VMware Workstation 16 Pro 16.2.3 麒麟系统：Kylin-Server-10-SP1-Release-Build20-2021</description>
+    </item>
+    
     <item>
       <title>IdeaWorlds 网站布局</title>
       <link>https://loyayz.com/coding/220619-iws-client-layout/</link>
