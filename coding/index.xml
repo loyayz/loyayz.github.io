@@ -20,12 +20,12 @@
     </item>
     
     <item>
-      <title>IdeaWorlds 网站页头</title>
-      <link>https://loyayz.com/coding/220620-iws-client-header/</link>
+      <title>IdeaWorlds 特性模块</title>
+      <link>https://loyayz.com/coding/220620-iws-client-modules/</link>
       <pubDate>Mon, 20 Jun 2022 00:00:00 +0800</pubDate>
       
-      <guid>https://loyayz.com/coding/220620-iws-client-header/</guid>
-      <description>IdeaWorlds 前端开发笔记（五） 本篇目标：实现网站页头。 LOGO 导航 操作区 用户信息 新建模块 新建组件 1 2 3 4 5 ng g c framework/components/header --project www ng g c framework/components/header-logo --project www ng g c framework/components/header-nav --project www ng g c framework/components/header-operation --project www ng</description>
+      <guid>https://loyayz.com/coding/220620-iws-client-modules/</guid>
+      <description>IdeaWorlds 前端开发笔记（五） 本篇目标：创建特性模块。 新建模块 创建home、idea、news、people、tag五个模块并使用懒加载 。 1 2 3 4 5 ng</description>
     </item>
     
     <item>
