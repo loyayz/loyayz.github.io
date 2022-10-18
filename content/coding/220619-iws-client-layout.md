@@ -25,19 +25,19 @@ IdeaWorlds 前端开发笔记（四）
 
 1. 新建模块和组件
    ```shell
-   ng g module shared/share --flat
-   ng g module framework/framework --flat
-   ng g c framework/components/header
-   ng g c framework/components/header-logo
-   ng g c framework/components/header-nav
-   ng g c framework/components/header-operation
-   ng g c framework/components/header-person
+   ng g module shared/share --flat --project www
+   ng g module framework/framework --flat --project www
+   ng g c framework/components/header --project www
+   ng g c framework/components/header-sidebar --project www
+   ng g c framework/components/header-nav --project www
+   ng g c framework/components/header-operation --project www
+   ng g c framework/components/header-person --project www
    ```
 
 2. 模块依赖
 
 - `ShareModule`引入并重新导出其他模块常用的模块
-- `FrameworkModule`引入`ShareModule`
+- `FrameworkModule`引入`ShareModule`并导出`HeaderComponent`
 - `AppModule`引入`FrameworkModule`
 
 {{% tabs %}}
@@ -79,7 +79,7 @@ export class AppModule { }
 import { NgModule } from '@angular/core';
 import { ShareModule } from '../shared/share.module';
 import { HeaderComponent } from './components/header/header.component';
-import { HeaderLogoComponent } from './components/header-logo/header-logo.component';
+import { HeaderSidebarComponent } from './components/header-sidebar/header-sidebar.component';
 import { HeaderNavComponent } from './components/header-nav/header-nav.component';
 import { HeaderOperationComponent } from './components/header-operation/header-operation.component';
 import { HeaderPersonComponent } from './components/header-person/header-person.component';
@@ -88,10 +88,10 @@ import { HeaderPersonComponent } from './components/header-person/header-person.
 @NgModule({
   declarations: [
     HeaderComponent,
-    HeaderLogoComponent,
     HeaderNavComponent,
     HeaderOperationComponent,
     HeaderPersonComponent,
+    HeaderSidebarComponent,
   ],
   exports: [
     HeaderComponent
@@ -144,11 +144,16 @@ export class ShareModule { }
 ```less { title="styles.less" }
 :root {
   --iws-gap: 16px;
-  --iws-page-color: #f0f2f5;
-  --iws-background-color: #ffffff;
   --iws-header-height: 50px;
-  --iws-header-width: 1200px;
-  --iws-main-width: 1000px;
+  --iws-header-max-width: 1200px;
+  --iws-main-max-width: 1200px;
+}
+
+@media (max-width: 576px) {
+  :root {
+    --iws-gap: 12px;
+    --iws-header-height: 40px;
+  }
 }
 ```
 ```less { title="app/app.component.less" }
@@ -164,14 +169,14 @@ export class ShareModule { }
   position: fixed;
   width: 100%;
   height: var(--iws-header-height);
-  background: var(--iws-background-color);
   margin-bottom: 1px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   z-index: 100;
 }
 
 .page-main {
-  width: var(--iws-main-width);
+  width: 100%;
+  max-width: var(--iws-main-max-width);
   min-height: calc(~"100vh - var(--iws-header-height) - var(--iws-gap)");
   margin: calc(~"var(--iws-header-height) + var(--iws-gap)") auto 0 auto;
 }
@@ -179,16 +184,18 @@ export class ShareModule { }
 {{% /tab %}}
 {{% /tabs %}}
 
+切换导航时路由对应的组件将展示在 `<router-outlet></router-outlet>`
+
 4. 实现网站页头
 
 {{% tabs %}}
 {{% tab "组件" %}}
 ```angular2html { title="app/framework/components/header/header.component.html" }
-<div nz-row class="main">
-  <app-header-logo nz-col nzFlex="100px"></app-header-logo>
-  <app-header-nav nz-col nzFlex="auto"></app-header-nav>
-  <app-header-operation nz-col nzFlex="450px"></app-header-operation>
-  <app-header-person nz-col nzFlex="150px"></app-header-person>
+<div class="main">
+  <app-header-sidebar class="header-sidebar"></app-header-sidebar>
+  <app-header-nav class="header-nav"></app-header-nav>
+  <app-header-operation class="header-operation" ></app-header-operation>
+  <app-header-person class="header-person"></app-header-person>
 </div>
 ```
 {{% /tab %}}
@@ -196,45 +203,13 @@ export class ShareModule { }
 {{% tab "样式" %}}
 ```less { title="app/framework/components/header/header.component.less" }
 .main {
+  display: flex;
   width: 100%;
-  max-width: var(--iws-header-width);
+  max-width: var(--iws-header-max-width);
   height: var(--iws-header-height);
   line-height: var(--iws-header-height);
   margin: 0 auto;
 }
-```
-{{% /tab %}}
-
-{{% tab "模块" %}}
-```typescript { title="app/framework/framework.module.ts" }
-import { NgModule } from '@angular/core';
-import { ShareModule } from '../shared/share.module';
-import { HeaderComponent } from './components/header/header.component';
-import { HeaderLogoComponent } from './components/header-logo/header-logo.component';
-import { HeaderNavComponent } from './components/header-nav/header-nav.component';
-import { HeaderOperationComponent } from './components/header-operation/header-operation.component';
-import { HeaderPersonComponent } from './components/header-person/header-person.component';
-// header.component.html 基于 nz-row 实现布局，因此需要引入对应的模块
-import { NzGridModule } from 'ng-zorro-antd/grid';
-
-
-@NgModule({
-  declarations: [
-    HeaderComponent,
-    HeaderLogoComponent,
-    HeaderNavComponent,
-    HeaderOperationComponent,
-    HeaderPersonComponent,
-  ],
-  exports: [
-    HeaderComponent
-  ],
-  imports: [
-    ShareModule,
-    NzGridModule
-  ]
-})
-export class FrameworkModule { }
 ```
 {{% /tab %}}
 {{% /tabs %}}

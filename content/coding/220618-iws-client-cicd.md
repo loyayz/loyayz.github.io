@@ -184,12 +184,12 @@ IdeaWorlds 前端开发笔记（三）
 
   mkdir -p ./app/data/prev/
   mkdir -p ./app/data/latest/
-  mkdir -p ./app/data/latest_bak/
+  mkdir -p ./app/data/current/
+  rm -rf ./app/data/current/
+  mv ./app/dist/ ./app/data/current/
   rm -rf ./app/data/prev/
   mv ./app/data/latest/ ./app/data/prev/
-  cp -r ./app/dist/ ./app/data/latest/
-  rm -rf ./app/data/latest_bak/
-  cp -r ./app/dist/ ./app/data/latest_bak/
+  mv ./app/data/current/ ./app/data/latest/
   ```
 
 ## 2. 服务器
@@ -203,11 +203,48 @@ IdeaWorlds 前端开发笔记（三）
 
 使用`docker compose`启动 Nginx 服务
 
-- 创建 Nginx 目录
+- 创建 Nginx 目录和默认配置
   ```shell
-  mkdir -p /data/nginx 
-  mkdir -p /data/nginx/conf.d 
+  mkdir -p /data/nginx/conf.d
+  docker run --name tmp-nginx -d nginx:latest
+  docker cp tmp-nginx:/etc/nginx/nginx.conf /data/nginx/nginx.conf
+  docker cp tmp-nginx:/etc/nginx/conf.d/default.conf /data/nginx/conf.d/default.conf
+  docker rm -f tmp-nginx
   ```
+- 配置前端服务
+  - 软链接前端目录
+     ```shell
+     mkdir -p /data/nginx/html
+     ln -s /app/ideaworlds/www /data/nginx/html/www.ideaworlds.info
+     ln -s /app/ideaworlds/console /data/nginx/html/console.ideaworlds.info
+     ```
+  - 在`./conf.d/`目录下新建 Nginx 配置文件并编辑
+    ```shell
+    vi /data/nginx/conf.d/ideaworlds.info.conf
+    ```
+    ```text { title="/data/nginx/conf.d/ideaworlds.info.conf" }
+    server {
+        listen       80;
+        listen  [::]:80;
+        server_name  ideaworlds.info www.ideaworlds.info;
+
+        location / {
+            root   /html/www.ideaworlds.info/latest;
+            try_files $uri $uri/ /index.html?$query_string;
+        }
+    }
+    
+    server {
+        listen       80;
+        listen  [::]:80;
+        server_name  console.ideaworlds.info;
+
+        location / {
+            root   /html/console.ideaworlds.info/latest;
+            try_files $uri $uri/ /index.html?$query_string;
+        }
+    }
+    ```
 - 编写 Docker Compose 配置
   ```yml { title="/data/nginx/docker-compose.yml" }
   version: '3.0'
@@ -217,6 +254,8 @@ IdeaWorlds 前端开发笔记（三）
       restart: always
       image: nginx:latest
       container_name: nginx
+      environment:
+        TZ: Asia/Shanghai
       ports:
         - 80:80
         - 443:443
@@ -224,30 +263,19 @@ IdeaWorlds 前端开发笔记（三）
         - ./nginx.conf:/etc/nginx/nginx.conf
         - ./conf.d:/etc/nginx/conf.d
         - ./logs:/var/log/nginx
+        - ./html/www.ideaworlds.info:/html/www.ideaworlds.info
+        - ./html/console.ideaworlds.info:/html/console.ideaworlds.info
   ```
   > 使用`nginx:latest`镜像启动一个名为`nginx`的容器，并映射服务器的 80 和 443 端口。
 - 启动 Nginx 服务
   ```shell
   docker compose up -d
   ```
-- 编写两个脚本用于更新 Nginx 服务
-  ```shell { title="/data/nginx/test_conf.sh" }
-  docker exec nginx nginx -t
-  ```
-  ```shell { title="/data/nginx/reload_nginx.sh" }
-  docker exec nginx nginx -s reload
-  ```
-  > 修改 Nginx 配置后
-  > 
-  > 执行 `sh ./test_conf.sh` 校验配置是否正常
-  > 
-  > 执行 `sh ./reload_nginx.sh` 重启 Nginx 服务
-- 配置前端反向代理
-  - 在`./conf.d/`目录下新建 Nginx 配置文件并指向前端目录`/app/ideaworlds/`
-    - [www.ideaworlds.info](https://ideaworlds.info) -> `www/latest`、`www/latest_bak`
-    - [console.ideaworlds.info](https://console.ideaworlds.info) -> `console/latest`、`console/latest_bak`
-  - 重启 Nginx 服务
-
+  > 后续若修改`docker-compose.yml`配置文件，重启服务的命令如下：
+  > ```shell
+  > docker compose down
+  > docker compose up -d
+  > ```
 ### 2.3 生成密钥
 
 [腾讯云文档](https://cloud.tencent.com/document/product/1207/44573)

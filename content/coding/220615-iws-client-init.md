@@ -30,11 +30,9 @@ IdeaWorlds 前端开发笔记（一）
 
   打开终端输入如下命令：
   ```shell
-  npm install -g @angular/cli@v13
+  npm install -g @angular/cli
   ```
-  >Angular 开发一般使用 Angular CLI 来创建项目，生成应用和库代码，以及执行各种持续开发任务，比如测试、打包和部署。
-  >
-  >写本篇时`Angular 14`刚发布不久，我选用的`NG-ZORRO`还没有适配，为避免可能的问题这里先指定安装`v13`，后续等适配后再升级到最新版。
+  > Angular 开发一般使用 Angular CLI 来创建项目，生成应用和库代码，以及执行各种持续开发任务，比如测试、打包和部署。
 
 ## 3. 创建工作区
 

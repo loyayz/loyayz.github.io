@@ -61,6 +61,7 @@ params:
     ShowShareButtons: false
     ShowCodeCopyButtons: true
     ShowFullTextinRSS: false
+    ShowPageNums: true
     defaultTheme: auto
     disableThemeToggle: false
     disableSpecial1stPost: true
